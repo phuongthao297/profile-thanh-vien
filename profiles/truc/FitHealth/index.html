@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FitHealth – Chăm sóc sức khỏe và thể hình</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f1f8f4; --ink:#12263a; --ink2:#51657a; --line:#d9e5df;
+  --green:#0f7b4f; --green-h:#0a6340; --on-green:#ffffff; --green-t:#e0f3ea;
+  --blue:#1b6ca8; --blue-t:#e1eef9; --amber:#a86a0a; --amber-t:#fbf0d9;
+  --red:#b3261e; --red-t:#fbe8e5; --focus:#1b6ca8;
+  --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-disp:"Bricolage Grotesque","Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1a22; --bg2:#122630; --ink:#e8f1ee; --ink2:#a3b6b2; --line:#27414b;
+    --green:#3fc08a; --green-h:#66d4a5; --on-green:#06231a; --green-t:#133a2c;
+    --blue:#62b0ec; --blue-t:#12324a; --amber:#e6b44f; --amber-t:#3a2d0f;
+    --red:#f08a82; --red-t:#3e1b19; --focus:#62b0ec; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1a22; --bg2:#122630; --ink:#e8f1ee; --ink2:#a3b6b2; --line:#27414b;
+  --green:#3fc08a; --green-h:#66d4a5; --on-green:#06231a; --green-t:#133a2c;
+  --blue:#62b0ec; --blue-t:#12324a; --amber:#e6b44f; --amber-t:#3a2d0f;
+  --red:#f08a82; --red-t:#3e1b19; --focus:#62b0ec; color-scheme:dark;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:var(--f-disp);line-height:1.15;letter-spacing:-.015em;margin:0 0 .5em;font-weight:800}
+h1{font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.025em}
+h2{font-size:clamp(1.4rem,2.6vw,1.9rem)}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0 0 1em;max-width:68ch}
+a{color:var(--blue)}
+img,svg{max-width:100%}
+.muted{color:var(--ink2)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--green);color:var(--on-green);padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;min-height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--f-disp);font-weight:800;font-size:1.3rem;letter-spacing:-.02em}
+.logo svg{width:32px;height:32px}
+.nav{display:flex;gap:4px;margin-left:12px;flex:1}
+.nav a{color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:500}
+.nav a:hover{background:var(--bg2);color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--green);background:var(--green-t)}
+.acts{display:flex;gap:8px;align-items:center}
+.burger{display:none}
+@media (max-width:860px){
+  .burger{display:inline-flex;margin-left:auto}
+  .nav,.acts{display:none}
+  .top.open .wrap{flex-wrap:wrap;padding-bottom:12px}
+  .top.open .nav{display:flex;flex-direction:column;width:100%;margin:0}
+  .top.open .acts{display:flex;width:100%}
+}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--green);background:var(--green);color:var(--on-green);font:600 .95rem var(--f-body);padding:10px 18px;border-radius:10px;cursor:pointer;text-decoration:none;min-height:42px}
+.btn:hover{background:var(--green-h);border-color:var(--green-h)}
+.btn.sec{background:transparent;color:var(--green)}
+.btn.sec:hover{background:var(--green-t)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--bg2)}
+.btn.danger{background:transparent;border-color:var(--red);color:var(--red)}
+.btn.danger:hover{background:var(--red-t)}
+.btn.sm{padding:6px 12px;min-height:34px;font-size:.88rem;border-radius:8px}
+.btn.lg{padding:13px 24px;font-size:1.02rem}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.fld{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.fld label{font-weight:600;font-size:.92rem}
+.fld small{color:var(--ink2)}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-height:42px;width:100%}
+input:hover,select:hover,textarea:hover{border-color:var(--ink2)}
+textarea{resize:vertical}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0 14px}
+.err{color:var(--red);margin:0 0 10px;font-weight:500}
+.ok{color:var(--green);font-weight:500}
+.tag{display:inline-block;font-size:.8rem;font-weight:600;padding:2px 10px;border-radius:99px;background:var(--bg2);color:var(--ink2);border:1px solid var(--line)}
+.t-green{background:var(--green-t);color:var(--green);border-color:transparent}
+.t-blue{background:var(--blue-t);color:var(--blue);border-color:transparent}
+.t-amber{background:var(--amber-t);color:var(--amber);border-color:transparent}
+.t-red{background:var(--red-t);color:var(--red);border-color:transparent}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+
+/* sections */
+section.sec{padding:56px 0}
+section.alt{background:var(--bg2)}
+.shead{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.shead h2{margin:0}
+.pagehead{padding:36px 0 8px}
+.pagehead p{color:var(--ink2)}
+
+/* hero */
+.hero{padding:48px 0 56px;border-bottom:1px solid var(--line)}
+.hero-g{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero p.lead{font-size:1.15rem;color:var(--ink2)}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+@media (max-width:900px){.hero-g{grid-template-columns:1fr;gap:28px}}
+.bmi-panel{border:1px solid var(--line);border-radius:16px;padding:24px;background:var(--bg)}
+.bmi-panel h2{font-size:1.25rem}
+.bmi-v{display:flex;align-items:center;gap:12px;margin:8px 0 0}
+.bmi-v strong{font:800 2.6rem var(--f-disp);line-height:1}
+.scale{display:flex;height:14px;border-radius:99px;overflow:hidden;position:relative;margin-top:20px}
+.scale i{display:block;height:100%}
+.s-blue{background:#5aa9e6}.s-green{background:#2fa56f}.s-amber{background:#e0a82e}.s-red{background:#d9622b}
+.mk{position:absolute;top:-4px;width:6px;height:22px;background:var(--ink);border:2px solid var(--bg);border-radius:4px;transform:translateX(-50%);transition:left .35s ease}
+.scale-l{position:relative;height:20px;font-size:.78rem;color:var(--ink2);margin-top:4px}
+.scale-l span{position:absolute;transform:translateX(-50%)}
+.scale-l span:first-child{transform:none}
+.scale-l span:last-child{transform:translateX(-100%)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.fine{font-size:.85rem;color:var(--ink2);margin-top:12px}
+
+/* tiles + cards */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.tile{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);transition:border-color .15s}
+.tile:hover{border-color:var(--green)}
+.tile .art{display:block;width:100%;height:auto}
+.tile .tb{padding:12px 14px 14px}
+.tile h3{margin:0 0 6px}
+.cols3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.post{display:block;text-decoration:none;color:var(--ink);border-top:3px solid var(--green);padding-top:12px}
+.post:nth-child(2){border-color:var(--blue)}
+.post h3{margin-bottom:6px}
+.post:hover h3{text-decoration:underline}
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;counter-reset:s}
+.steps li{counter-increment:s;padding-left:46px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--on-green);display:grid;place-items:center;font:800 1rem var(--f-disp)}
+.band{background:var(--green);color:var(--on-green);border-radius:18px;padding:36px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+.band h2{margin:0 0 6px}
+.band p{margin:0}
+.band .btn{background:var(--on-green);color:var(--green);border-color:var(--on-green)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:7px 14px;border-radius:99px;font:500 .9rem var(--f-body);cursor:pointer}
+.chip:hover{border-color:var(--green)}
+.chip[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;margin-top:8px}
+@media (max-width:760px){.filters{grid-template-columns:1fr 1fr}.filters>:first-child{grid-column:1/-1}}
+.empty{border:1px dashed var(--line);border-radius:14px;padding:32px;text-align:center;color:var(--ink2)}
+
+/* detail */
+.detail{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;padding:28px 0 56px}
+@media (max-width:860px){.detail{grid-template-columns:1fr}}
+.detail .art{border-radius:16px;width:100%;height:auto}
+.crumb{font-size:.9rem;padding-top:24px}
+.vidbox{margin-bottom:16px}
+.vidframe{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line)}
+.vidframe iframe,.vidframe video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vidempty{display:flex;flex-direction:column;gap:10px;align-items:flex-start;background:var(--bg2);border:1px dashed var(--line);border-radius:16px;padding:20px}
+.vidempty b{font-family:var(--f-disp);font-size:1.05rem}
+.vidlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.steps-ol{padding-left:22px}.steps-ol li{margin-bottom:10px}
+.note{background:var(--amber-t);color:var(--ink);border-radius:10px;padding:12px 16px;font-size:.92rem}
+.prose p{max-width:68ch;margin-bottom:1.1em}
+.prose{font-size:1.04rem}
+
+/* tables */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--bg2);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.ta{display:flex;gap:6px;flex-wrap:wrap}
+
+/* shell */
+.shell{display:grid;grid-template-columns:220px 1fr;gap:32px;padding:28px 20px 64px}
+.side{display:flex;flex-direction:column;gap:2px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);align-self:start}
+.side a{text-decoration:none;color:var(--ink2);padding:9px 12px;border-radius:8px;font-weight:500}
+.side a:hover{background:var(--bg2);color:var(--ink)}
+.side a[aria-current="page"]{background:var(--green-t);color:var(--green)}
+.side .gl{font-size:.82rem;color:var(--ink2);padding:10px 12px 4px}
+@media (max-width:860px){
+  .shell{grid-template-columns:1fr;gap:16px}
+  .side{flex-direction:row;overflow-x:auto;position:static;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .side a{white-space:nowrap}.side .gl{display:none}
+}
+.ph{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.ph h1{font-size:clamp(1.5rem,3vw,2.1rem);margin:0}
+.pn{border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:20px;background:var(--bg)}
+.pn>h2{font-size:1.15rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:20px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat b{display:block;font:800 1.8rem var(--f-disp);line-height:1.1}
+.stat span{color:var(--ink2);font-size:.88rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.bar{height:10px;background:var(--bg2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;background:var(--green)}
+.chart{width:100%;height:auto;display:block}
+.chart text{fill:var(--ink2);font-size:11px;font-family:var(--f-body)}
+.item{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.item:last-child{border-bottom:0}
+.item.done .nm{text-decoration:line-through;color:var(--ink2)}
+.plan-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+.plan-h h3{margin:0}
+.macro{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.macro div{background:var(--bg2);border-radius:8px;padding:8px 10px;text-align:center}
+.macro b{display:block;font-family:var(--f-disp);font-size:1.15rem}
+.macro span{font-size:.78rem;color:var(--ink2)}
+.check{list-style:none;padding:0;margin:0}
+.check li{display:flex;gap:10px;padding:6px 0;align-items:center}
+.check .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex:none;font-size:.8rem}
+.check .on .dot{background:var(--green);border-color:var(--green);color:var(--on-green)}
+
+/* auth */
+.auth{max-width:440px;margin:40px auto 72px;padding:0 20px}
+.auth .pn{padding:28px}
+.demo{background:var(--blue-t);border-radius:10px;padding:12px 14px;font-size:.9rem;margin-bottom:18px}
+.demo code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem}
+
+/* dialog */
+dialog{border:1px solid var(--line);border-radius:16px;padding:0;background:var(--bg);color:var(--ink);width:min(560px,calc(100vw - 24px));max-height:calc(100vh - 24px)}
+dialog::backdrop{background:rgba(8,18,24,.55)}
+.mform{padding:24px}
+.mform h2{font-size:1.25rem}
+.mact{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;max-width:calc(100vw - 32px)}
+#toast.show{opacity:1;transform:translateX(-50%)}
+
+details.faq{border-bottom:1px solid var(--line);padding:12px 0}
+details.faq summary{cursor:pointer;font-weight:600}
+details.faq p{margin:8px 0 0;color:var(--ink2)}
+
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:32px 0 40px;margin-top:0}
+footer .fg{display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between}
+footer a{color:var(--ink2);text-decoration:none;margin-right:16px}
+footer a:hover{color:var(--green)}
+
+body{background:var(--bg);line-height:1.7}.wrap{max-width:1240px}.top .wrap{min-height:76px}.btn{border-radius:99px}.pn,.tile,.stat{box-shadow:0 8px 30px rgba(16,60,39,.04)}.tile{transition:transform .2s,box-shadow .2s}.tile:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(16,60,39,.12)}.photo-art{height:210px;background-image:url('assets/activities.png');background-size:300% 200%;background-repeat:no-repeat}.detail .photo-art{height:380px;border-radius:24px}.featurehero{position:relative;background:#073326;color:#fff;border-radius:28px;overflow:hidden;margin:24px auto 0;min-height:500px}.hero-photo{position:absolute;inset:0;background:url('assets/banner.png') center/cover;opacity:.48}.featurehero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#062b21 0%,rgba(6,43,33,.88) 40%,transparent 80%)}.hero-copy{position:relative;z-index:1;padding:64px 48px;max-width:620px}.hero-copy h1{font-size:clamp(2.5rem,5.5vw,4.5rem);letter-spacing:-.05em}.hero-copy p{color:#d3e8dc}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;font-weight:600}.hero-copy .btn{background:#c5f29e;border-color:#c5f29e;color:#173b26}.hero-copy .btn.sec{background:transparent;color:white;border-color:#769b89}.goalgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.goal-card{padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--bg);text-align:left;color:var(--ink);cursor:pointer;font:inherit}.goal-card:hover,.goal-card.selected{border-color:var(--green);background:var(--green-t)}.goal-card b{display:block;font:800 1.4rem var(--f-disp);margin:14px 0}.goal-icon{font-size:2rem}.goal-summary{padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.visual-panel{display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;align-items:center;padding:32px;border-radius:24px;background:var(--bg2)}.muscle-map{height:380px;width:100%;max-width:300px;display:block;margin:auto}.muscle-map [data-muscle]{cursor:pointer;fill:#5fa88a;stroke:#f1f8f4;stroke-width:3;transition:fill .2s}.muscle-map [data-muscle]:hover,.muscle-map [data-muscle]:focus{fill:#d5b243;outline:none}.muscle-map [data-muscle].chosen{fill:#e5b845}.quickmetrics{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.ring{--progress:0;display:grid;place-items:center;width:116px;height:116px;border-radius:50%;background:conic-gradient(var(--green) calc(var(--progress)*1%),var(--line) 0);margin:12px auto}.ring:before{content:'';width:94px;height:94px;border-radius:50%;background:var(--bg);grid-area:1/1}.ring strong{position:relative;grid-area:1/1;font-size:1.25rem}.ringcard{text-align:center;padding:20px;border:1px solid var(--line);border-radius:20px}.timerface{font:800 4rem var(--f-disp);text-align:center;letter-spacing:-.04em;margin:20px 0}.weekgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:20px 0}.daycard{padding:12px 8px;border:1px solid var(--line);border-radius:12px;font-size:.8rem;background:var(--bg2)}.daycard b{display:block;color:var(--green)}.numberpill{width:42px;height:42px;background:var(--green-t);border-radius:12px;display:grid;place-items:center;font-weight:800}.mealhero{height:240px;border-radius:18px;background-image:url('assets/activities.png');background-size:300% 200%;background-position:100% 100%;margin-bottom:18px}.tile .photo-art:after{content:'Khám phá ↗';position:relative;top:166px;left:14px;font-size:.75rem;background:white;color:#174632;border-radius:99px;padding:6px 12px}.sectionintro{max-width:600px;color:var(--ink2)}.post{border:1px solid var(--line);border-radius:18px;overflow:hidden;padding:0 0 18px}.post>h3,.post>p,.post>span,.post>small{margin-left:18px;margin-right:18px}.post .photo-art{height:170px;margin:0 0 16px}.post .photo-art:after{display:none}section.sec{padding:64px 0}.timeractions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+@media(max-width:760px){.hero-copy{padding:42px 24px}.featurehero{min-height:450px}.hero-photo{background-position:65% center}.goalgrid,.quickmetrics{grid-template-columns:1fr}.visual-panel{grid-template-columns:1fr;padding:24px}.weekgrid{grid-template-columns:repeat(2,1fr)}.detail .photo-art{height:270px}.featurehero{margin-top:14px}.nav a{font-size:.88rem}}
+
+/* calo + ảnh */
+.bar i.over{background:var(--amber)}
+.calnum{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 10px}.calnum b{font:800 2.6rem var(--f-disp);letter-spacing:-.03em}
+.calsplit{display:grid;gap:8px}.calrow{display:grid;grid-template-columns:92px 1fr 84px;gap:12px;align-items:center;font-size:.9rem}.calrow b{text-align:right;font-weight:600}
+.calcard .macro{margin:14px 0 0}
+.mealhero{background-image:url('assets/photos/meal.jpg');background-size:cover;background-position:center;height:320px;border-radius:24px}
+#main .pn>.mealhero{height:170px;background-position:center 35%}
+.post{transition:transform .2s,box-shadow .2s;background:var(--bg)}.post:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(16,60,39,.12)}
+.post .photo-art{height:190px;border-radius:0}
+.artcover .photo-art{height:340px;border-radius:24px;margin:12px 0 24px}
+@media(max-width:760px){.artcover .photo-art{height:220px}.calrow{grid-template-columns:78px 1fr 78px}}
+
+.tile .photo-art{height:170px;border-radius:0;margin:0}
+.vidplay{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:#000;cursor:pointer}
+.vidplay img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:opacity .2s}.vidplay:hover img{opacity:1}
+.vidbtn{position:absolute;inset:0;margin:auto;width:72px;height:50px;border-radius:14px;background:#e62117;color:#fff;display:grid;place-items:center;font-size:1.5rem;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+
+.tile .photo-art{position:relative}
+.tile .photo-art:after{position:absolute;top:auto;bottom:12px;left:12px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua điều hướng</a>
+<header class="top" id="top"></header>
+<main id="main" tabindex="-1"></main>
+<footer>
+  <div class="wrap fg">
+    <div>
+      <strong style="font-family:var(--f-disp);font-size:1.1rem">FitHealth</strong>
+      <p class="muted" style="margin:6px 0 0;font-size:.9rem">Nội dung chỉ mang tính tham khảo. Website không chẩn đoán bệnh hoặc kê đơn.</p>
+      <p class="muted" style="margin:6px 0 0;font-size:.9rem">Bản demo: dữ liệu lưu trong trình duyệt của bạn, không gửi lên máy chủ.</p>
+    </div>
+    <nav aria-label="Liên kết chân trang">
+      <a href="#/bai-tap">Bài tập</a><a href="#/dinh-duong">Dinh dưỡng</a><a href="#/kien-thuc">Kiến thức</a><a href="#/lien-he">Liên hệ</a>
+    </nav>
+  </div>
+</footer>
+<dialog id="dlg" aria-labelledby="dlgt"></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const pad=n=>String(n).padStart(2,'0');
+const isoOf=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const todayISO=()=>isoOf(new Date());
+const addDays=(iso,n)=>{const d=new Date(iso+'T00:00:00');d.setDate(d.getDate()+n);return isoOf(d)};
+const vd=iso=>iso?String(iso).slice(0,10).split('-').reverse().join('/'):'';
+const num=(v,dp=1)=>Number(v).toLocaleString('vi-VN',{maximumFractionDigits:dp});
+const age=iso=>{if(!iso)return null;const b=new Date(iso+'T00:00:00'),n=new Date();let a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),b.getMonth(),b.getDate()))a--;return a};
+const opt=(arr,sel)=>arr.map(o=>{const [v,l]=Array.isArray(o)?o:[o,o];return `<option value="${esc(v)}"${String(v)===String(sel)?' selected':''}>${esc(l)}</option>`}).join('');
+
+const CATS=['Cardio','Sức mạnh','Cơ bụng','Giãn cơ','Yoga'];
+const MUSCLES=['Toàn thân','Chân','Ngực','Lưng','Vai','Tay','Bụng'];
+const DIFFS=['Dễ','Trung bình','Khó'];
+const PLACES=['Tại nhà','Phòng gym','Ngoài trời'];
+const MEALS=['Bữa sáng','Bữa trưa','Bữa tối','Bữa phụ'];
+const ACTS=['Ít vận động','Vận động nhẹ','Vận động vừa','Vận động nhiều'];
+const GOALS=['Giảm cân','Tăng cơ','Duy trì thể trạng'];
+const FBST=['Mới','Đang xử lý','Đã phản hồi'];
+
+/* ---------- storage (localStorage, with in-memory fallback) ---------- */
+const KEY='fithealth_db_v1',SKEY='fithealth_session_v1';
+let DB=null,sessionId=null;
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function lsDel(k){try{localStorage.removeItem(k)}catch(e){}}
+function save(){lsSet(KEY,JSON.stringify(DB))}
+async function hashPw(salt,pw){
+  try{
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(salt+':'+pw));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }catch(e){let h=5381;for(const c of salt+':'+pw)h=((h<<5)+h+c.charCodeAt(0))>>>0;return 'x'+h.toString(16)}
+}
+
+async function seed(){
+  const t=todayISO();
+  const db={users:[],profiles:{},exercises:[],plans:[],foods:[],meals:[],healthLogs:[],bmi:[],articles:[],feedbacks:[],favorites:[]};
+  const mk=async(email,pw,role)=>{const salt=uid();return{id:uid(),email,salt,hash:await hashPw(salt,pw),role,active:true,createdAt:t}};
+  const admin=await mk('admin@fithealth.vn','Admin@123','admin');
+  const demo=await mk('demo@fithealth.vn','Demo@123','user');
+  db.users.push(admin,demo);
+  db.profiles[admin.id]={fullName:'Quản trị viên'};
+  db.profiles[demo.id]={fullName:'Minh Anh (tài khoản dùng thử)',birthDate:'1998-05-14',gender:'Nữ',heightCm:162,activity:'Vận động nhẹ',goal:'Giảm cân',targetWeight:57};
+
+  const ex=[
+   ['Đi bộ nhanh','Cardio','Toàn thân','Không cần dụng cụ','Dễ','Ngoài trời',['Đứng thẳng, mắt nhìn phía trước, vai thả lỏng.','Bước nhanh hơn bình thường, vung tay tự nhiên. Bạn vẫn nói chuyện được nhưng hơi gấp.','Bắt đầu với 15–20 phút, tăng dần theo cảm giác của cơ thể.']],
+   ['Nhảy dây','Cardio','Toàn thân','Dây nhảy','Trung bình','Tại nhà',['Cầm hai tay cầm ngang hông, khuỷu tay gần thân.','Xoay dây bằng cổ tay, nhảy thấp khoảng 2–3 cm, tiếp đất nhẹ bằng mũi bàn chân.','Nhảy 30 giây, nghỉ 30 giây, lặp lại 5–8 hiệp.']],
+   ['Chạy bộ ngắt quãng','Cardio','Chân','Không cần dụng cụ','Khó','Ngoài trời',['Khởi động bằng đi bộ nhanh 5 phút.','Chạy 1 phút ở mức hơi gắng sức, rồi đi bộ 2 phút để hồi sức.','Lặp lại 5–6 lần, kết thúc bằng đi bộ chậm và giãn cơ chân.']],
+   ['Squat','Sức mạnh','Chân','Không cần dụng cụ','Dễ','Tại nhà',['Đứng hai chân rộng bằng vai, mũi chân hơi mở ra ngoài.','Đẩy hông ra sau và hạ người như ngồi xuống ghế, giữ lưng thẳng, đầu gối cùng hướng với mũi chân.','Đẩy qua gót chân để đứng lên, thở ra khi đứng lên.']],
+   ['Hít đất','Sức mạnh','Ngực','Không cần dụng cụ','Trung bình','Tại nhà',['Chống hai tay rộng hơn vai một chút, thân người thẳng từ đầu đến gót.','Hạ ngực gần sát sàn, khuỷu tay mở khoảng 45 độ so với thân.','Đẩy người lên về vị trí ban đầu. Nếu còn khó, tập với đầu gối chạm sàn.']],
+   ['Deadlift tạ đòn','Sức mạnh','Lưng','Tạ đòn','Khó','Phòng gym',['Đứng hai chân rộng bằng hông, thanh đòn nằm trên giữa bàn chân.','Gập hông, nắm thanh đòn, giữ lưng thẳng và siết bụng.','Đẩy chân xuống sàn để đứng thẳng, giữ tạ sát chân, rồi hạ xuống có kiểm soát. Lần đầu nên tập với tạ nhẹ và có người hướng dẫn.']],
+   ['Đẩy vai với tạ đơn','Sức mạnh','Vai','Tạ đơn','Trung bình','Phòng gym',['Ngồi hoặc đứng thẳng, hai tạ đơn đặt ngang vai, lòng bàn tay hướng về phía trước.','Đẩy tạ lên trên đầu đến khi tay gần duỗi thẳng, không ưỡn lưng.','Hạ tạ chậm về ngang vai.']],
+   ['Cuốn tay với tạ đơn','Sức mạnh','Tay','Tạ đơn','Dễ','Phòng gym',['Đứng thẳng, hai tay cầm tạ, khuỷu tay sát thân.','Gập khuỷu đưa tạ lên vai, không đung đưa người.','Hạ tạ chậm về vị trí ban đầu.']],
+   ['Gập bụng','Cơ bụng','Bụng','Không cần dụng cụ','Dễ','Tại nhà',['Nằm ngửa, gập gối, bàn chân đặt trên sàn, tay đặt nhẹ trước ngực.','Siết bụng, nhấc vai khỏi sàn, không kéo cổ.','Hạ xuống chậm, thở ra khi nâng người lên.']],
+   ['Plank','Cơ bụng','Bụng','Thảm tập','Trung bình','Tại nhà',['Chống hai khuỷu tay dưới vai, hai chân duỗi thẳng.','Siết bụng và mông, giữ thân thẳng, không võng lưng hay nhô mông.','Giữ 20–45 giây rồi nghỉ, lặp lại 3 hiệp.']],
+   ['Giãn cơ đùi sau','Giãn cơ','Chân','Không cần dụng cụ','Dễ','Tại nhà',['Ngồi duỗi một chân, chân kia gập lại.','Từ từ gập người về phía bàn chân đang duỗi, giữ lưng thẳng.','Giữ 20–30 giây ở mức căng nhẹ, không đau, rồi đổi bên.']],
+   ['Giãn vai và cổ','Giãn cơ','Vai','Không cần dụng cụ','Dễ','Tại nhà',['Ngồi hoặc đứng thẳng, vai thả lỏng.','Nghiêng đầu sang một bên, tay cùng bên đặt nhẹ lên đầu, không kéo mạnh.','Giữ 20 giây mỗi bên, sau đó kéo một tay ngang ngực và giữ 20 giây.']],
+   ['Tư thế chó úp mặt','Yoga','Toàn thân','Thảm yoga','Dễ','Tại nhà',['Bắt đầu ở tư thế bốn điểm chống, hai tay rộng bằng vai, hai chân rộng bằng hông.','Đẩy hông lên cao tạo hình chữ V ngược, đầu gối có thể hơi gập.','Giữ 5 nhịp thở sâu rồi hạ xuống.']],
+   ['Tư thế chiến binh II','Yoga','Chân','Thảm yoga','Trung bình','Tại nhà',['Đứng chân rộng khoảng một sải chân, xoay mũi chân phải ra ngoài 90 độ.','Gập gối phải đến khi đầu gối nằm trên cổ chân, hai tay dang ngang.','Nhìn qua tay phải, giữ 5 nhịp thở rồi đổi bên.']]
+  ];
+  ex.forEach((e,i)=>db.exercises.push({id:'e'+(i+1),name:e[0],cat:e[1],muscle:e[2],equip:e[3],diff:e[4],place:e[5],steps:e[6],active:true}));
+
+  const fd=[
+   ['Cơm trắng (đã nấu)',100,'g',130,2.7,28,0.3],['Ức gà luộc',100,'g',165,31,0,3.6],['Trứng gà luộc',100,'g',155,13,1.1,11],
+   ['Chuối',100,'g',89,1.1,23,0.3],['Yến mạch khô',100,'g',389,16.9,66,6.9],['Sữa tươi nguyên kem',100,'ml',61,3.2,4.8,3.3],
+   ['Khoai lang luộc',100,'g',76,1.4,18,0.1],['Bông cải xanh luộc',100,'g',35,2.4,7.2,0.4],['Đậu phụ',100,'g',76,8,1.9,4.8],
+   ['Cá hồi nướng',100,'g',206,22,0,12],['Táo',100,'g',52,0.3,14,0.2],['Bơ',100,'g',160,2,8.5,14.7],['Bánh mì nguyên cám',100,'g',247,13,41,3.4]
+  ];
+  fd.forEach((f,i)=>db.foods.push({id:'f'+(i+1),name:f[0],refQty:f[1],unit:f[2],cal:f[3],protein:f[4],carbs:f[5],fat:f[6]}));
+
+  const art=[
+   ['150 phút mỗi tuần nghĩa là gì?','Kỹ thuật tập luyện','Nhiều người nghe đến mốc “150 phút mỗi tuần” nhưng không rõ cách áp dụng. Với người trưởng thành, WHO khuyến nghị 150 đến 300 phút hoạt động thể lực cường độ vừa mỗi tuần, hoặc 75 đến 150 phút cường độ mạnh, và nên có ít nhất hai buổi tập tăng cường cơ bắp.\n\nCường độ vừa nghĩa là bạn thở nhanh hơn bình thường nhưng vẫn nói chuyện được, ví dụ đi bộ nhanh hoặc đạp xe nhẹ. Bạn có thể chia nhỏ thành 30 phút, 5 ngày mỗi tuần.\n\nNếu mới bắt đầu, hãy đặt mục tiêu thấp hơn và tăng dần. Duy trì đều đặn quan trọng hơn một tuần tập thật nhiều. Nếu có bệnh nền hoặc đang đau, hãy hỏi bác sĩ trước khi tăng cường độ.','Tham khảo: WHO – Physical activity (fact sheet)','https://www.who.int/news-room/fact-sheets/detail/physical-activity'],
+   ['BMI cho biết gì và không cho biết gì','Chỉ số cơ thể','BMI được tính bằng cân nặng (kg) chia cho bình phương chiều cao (m). Đây là cách sàng lọc nhanh, dễ tính, và được dùng rộng rãi để phân nhóm thiếu cân, bình thường, thừa cân và béo phì.\n\nTuy nhiên BMI không phân biệt khối cơ và khối mỡ, không cho biết mỡ tập trung ở đâu, và không thay thế việc khám sức khỏe. Một người tập tạ lâu năm có thể có BMI cao nhưng tỷ lệ mỡ thấp. Ngưỡng phân loại cũng có thể khác với người châu Á.\n\nHãy dùng BMI như một con số tham khảo, và theo dõi thêm cân nặng theo thời gian, vòng eo, mức năng lượng và giấc ngủ.','Tham khảo: WHO – Obesity and overweight (fact sheet)','https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight'],
+   ['Ngủ đủ giấc giúp việc tập luyện ra sao','Giấc ngủ','Cơ thể phục hồi sau buổi tập chủ yếu khi bạn nghỉ ngơi. Người trưởng thành thường được khuyến nghị ngủ từ 7 giờ trở lên mỗi đêm, dù nhu cầu mỗi người có khác nhau.\n\nKhi ngủ thiếu, bạn dễ mệt hơn, khó tập trung và thấy buổi tập nặng hơn bình thường. Hãy thử đi ngủ và thức dậy vào giờ cố định, hạn chế màn hình trước khi ngủ.\n\nTrong mục Theo dõi sức khỏe, bạn có thể ghi số giờ ngủ mỗi ngày để xem mối liên hệ với cảm giác khi tập.','Tham khảo: khuyến nghị về thời lượng ngủ của người trưởng thành (CDC, Hoa Kỳ)',''],
+   ['Cách đọc bảng dinh dưỡng và tính khẩu phần','Dinh dưỡng','Mỗi thực phẩm trong FitHealth có một lượng tham chiếu, ví dụ 100 g. Năng lượng và các chất dinh dưỡng được ghi cho đúng lượng đó.\n\nĐể tính cho khẩu phần thực tế, lấy lượng bạn ăn chia cho lượng tham chiếu rồi nhân với giá trị trong bảng. Ví dụ ức gà luộc có 165 kcal trên 100 g, nếu bạn ăn 150 g thì được 165 × 150 ÷ 100 = 247,5 kcal.\n\nGiá trị trong bản demo là số gần đúng. Khi dùng cho mục đích thật, hãy đối chiếu với bảng thành phần thực phẩm hoặc nhãn sản phẩm.','Bài hướng dẫn cách tính theo tỷ lệ; số liệu thực phẩm trong demo cần đối chiếu nguồn chính thức.',''],
+   ['Ghi nhật ký nước uống: thói quen nhỏ, dễ duy trì','Thói quen sinh hoạt','Lượng nước cần thiết khác nhau tùy cân nặng, thời tiết và mức vận động, nên không có một con số đúng cho mọi người. Điều quan trọng là bạn nhận ra mình thường uống nhiều hay ít.\n\nHãy đặt một chai nước ở nơi dễ thấy và ghi lại mỗi lần uống. Sau vài ngày bạn sẽ thấy khung giờ nào hay quên uống. Màu nước tiểu vàng nhạt thường là dấu hiệu bạn đang uống khá đủ.\n\nNếu bác sĩ đã dặn bạn hạn chế hoặc tăng lượng nước vì lý do sức khỏe, hãy làm theo chỉ dẫn đó.','Bài viết mẫu cho bản demo; cần bổ sung nguồn tham khảo khi dùng dữ liệu thật.','']
+  ];
+  art.forEach((a,i)=>db.articles.push({id:'a'+(i+1),title:a[0],category:a[1],content:a[2],author:'Ban biên tập FitHealth',source:a[3],sourceUrl:a[4],publishedAt:addDays(t,-(i*4+1)),status:'Đã xuất bản',sample:true}));
+
+  const W=[62.4,62.2,62.3,62.0,61.9,61.9,61.6,61.7,61.4,61.3,61.2,61.0,61.1,60.8];
+  const WA=[1500,1800,2000,1700,2200,1600,1900,2100,1800,2000,1500,2300,1900,1200];
+  const SL=[6.5,7,7.5,6,7,8,7.5,6.5,7,7,6.5,7.5,8,7];
+  W.forEach((w,i)=>db.healthLogs.push({id:uid(),userId:demo.id,date:addDays(t,i-13),weight:w,water:WA[i],sleep:SL[i],notes:''}));
+  db.bmi.push({id:uid(),userId:demo.id,date:addDays(t,-13),heightCm:162,weight:62.4,bmi:62.4/(1.62*1.62)});
+  db.bmi.push({id:uid(),userId:demo.id,date:t,heightCm:162,weight:60.8,bmi:60.8/(1.62*1.62)});
+
+  db.plans.push({id:uid(),userId:demo.id,name:'Toàn thân tại nhà',date:t,span:'day',items:[
+    {id:uid(),exId:'e4',sets:3,reps:12,duration:0,done:true,actual:{sets:3,reps:12,duration:0,notes:'Hơi mỏi đùi'},completedOn:t},
+    {id:uid(),exId:'e10',sets:3,reps:0,duration:1,done:false},
+    {id:uid(),exId:'e1',sets:1,reps:0,duration:20,done:false}]});
+  db.plans.push({id:uid(),userId:demo.id,name:'Cardio nhẹ buổi sáng',date:addDays(t,-1),span:'day',items:[
+    {id:uid(),exId:'e1',sets:1,reps:0,duration:25,done:true,actual:{sets:1,reps:0,duration:25,notes:''},completedOn:addDays(t,-1)}]});
+
+  const m=(type,items)=>db.meals.push({id:uid(),userId:demo.id,date:t,type,items});
+  m('Bữa sáng',[{foodId:'f5',qty:50},{foodId:'f6',qty:200},{foodId:'f4',qty:100}]);
+  m('Bữa trưa',[{foodId:'f1',qty:150},{foodId:'f2',qty:120},{foodId:'f8',qty:100}]);
+
+  db.feedbacks.push({id:uid(),userId:demo.id,subject:'Muốn thêm bài tập cho người mới',content:'Mình mong có thêm nhiều bài tập tại nhà cho người mới bắt đầu.',status:'Đã phản hồi',reply:'Cảm ơn bạn. Chúng tôi sẽ bổ sung thêm bài tập tại nhà trong các lần cập nhật tới.',createdAt:addDays(t,-5),repliedAt:addDays(t,-4)});
+  return db;
+}
+
+/* ---------- data accessors ---------- */
+const me=()=>{const u=DB.users.find(x=>x.id===sessionId&&x.active);return u||null};
+const prof=id=>DB.profiles[id]||{};
+const exOf=id=>DB.exercises.find(e=>e.id===id);
+const foodOf=id=>DB.foods.find(f=>f.id===id);
+const byDateDesc=(a,b)=>(b.date||'').localeCompare(a.date||'');
+const myLogs=u=>DB.healthLogs.filter(l=>l.userId===u).sort((a,b)=>a.date.localeCompare(b.date));
+const latestW=u=>{const l=myLogs(u).filter(x=>x.weight>0);return l.length?l[l.length-1]:null};
+const planStatus=p=>{const n=p.items.length,d=p.items.filter(i=>i.done).length;if(!n||!d)return'Chưa tập';return d===n?'Hoàn thành':'Đang tập'};
+const foodVals=(f,q)=>{const r=q/f.refQty;return{cal:f.cal*r,protein:f.protein*r,carbs:f.carbs*r,fat:f.fat*r}};
+const sumItems=items=>items.reduce((s,it)=>{const f=foodOf(it.foodId);if(!f)return s;const v=foodVals(f,it.qty);return{cal:s.cal+v.cal,protein:s.protein+v.protein,carbs:s.carbs+v.carbs,fat:s.fat+v.fat}},{cal:0,protein:0,carbs:0,fat:0});
+
+/* ---------- BMI ---------- */
+const bmiOf=(h,w)=>w/((h/100)**2);
+const bmiCat=b=>b<18.5?['Thiếu cân','blue']:b<25?['Bình thường','green']:b<30?['Thừa cân','amber']:['Béo phì','red'];
+const bmiErr=(h,w)=>{
+  if(!(h>0)||!(w>0))return'Nhập chiều cao và cân nặng lớn hơn 0.';
+  if(h<100||h>250)return'Chiều cao cần nằm trong khoảng 100–250 cm.';
+  if(w<20||w>300)return'Cân nặng cần nằm trong khoảng 20–300 kg.';
+  return null;
+};
+function bmiScale(p){
+  return `<div class="scale" aria-hidden="true"><i class="s-blue" style="width:14%"></i><i class="s-green" style="width:26%"></i><i class="s-amber" style="width:20%"></i><i class="s-red" style="width:40%"></i><b class="mk" id="${p}mk" style="left:0;display:none"></b></div>
+  <div class="scale-l" aria-hidden="true"><span style="left:0">15</span><span style="left:14%">18,5</span><span style="left:40%">25</span><span style="left:60%">30</span><span style="left:100%">40</span></div>`;
+}
+function bmiBox(p,h,w){
+  return `<div class="row">
+    <div class="fld"><label for="${p}h">Chiều cao (cm)</label><input id="${p}h" type="number" inputmode="decimal" step="any" min="0" value="${h||''}" placeholder="Ví dụ: 165"></div>
+    <div class="fld"><label for="${p}w">Cân nặng (kg)</label><input id="${p}w" type="number" inputmode="decimal" step="any" min="0" value="${w||''}" placeholder="Ví dụ: 58"></div></div>
+    <div id="${p}r" aria-live="polite"></div>${bmiScale(p)}`;
+}
+function updBmi(p){
+  const hi=$('#'+p+'h'),wi=$('#'+p+'w'),r=$('#'+p+'r'),mk=$('#'+p+'mk');
+  if(!hi.value&&!wi.value){r.innerHTML='<p class="muted" style="margin:0">Nhập chiều cao và cân nặng để xem kết quả.</p>';mk.style.display='none';return null}
+  const h=parseFloat(hi.value),w=parseFloat(wi.value),e=bmiErr(h,w);
+  if(e){r.innerHTML=`<p class="err" style="margin:0">${e}</p>`;mk.style.display='none';return null}
+  const b=bmiOf(h,w),c=bmiCat(b);
+  mk.style.display='block';mk.style.left=((Math.min(40,Math.max(15,b))-15)/25*100)+'%';
+  r.innerHTML=`<p class="bmi-v"><strong>${num(b,1)}</strong><span class="tag t-${c[1]}">${c[0]}</span></p>`;
+  return{h,w,b};
+}
+const BMI_NOTE='BMI chỉ là chỉ số tham khảo, không đủ để đánh giá toàn bộ sức khỏe. Công cụ dành cho người từ 18 tuổi trở lên. Với người châu Á, nhiều khuyến nghị dùng ngưỡng thấp hơn (thừa cân từ khoảng 23).';
+
+/* ---------- art + charts ---------- */
+const ART={
+  'Cardio':['#1b6ca8','<path d="M14 42H42L50 24L62 60L72 36L78 42H106" fill="none" stroke="#1b6ca8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'],
+  'Sức mạnh':['#0f7b4f','<path d="M38 40H82" stroke="#0f7b4f" stroke-width="4" stroke-linecap="round"/><rect x="28" y="26" width="9" height="28" rx="3" fill="#0f7b4f"/><rect x="83" y="26" width="9" height="28" rx="3" fill="#0f7b4f"/><rect x="20" y="32" width="6" height="16" rx="2" fill="#0f7b4f"/><rect x="94" y="32" width="6" height="16" rx="2" fill="#0f7b4f"/>'],
+  'Cơ bụng':['#4b5cc4','<g fill="none" stroke="#4b5cc4" stroke-width="3.5"><rect x="38" y="16" width="19" height="14" rx="6"/><rect x="63" y="16" width="19" height="14" rx="6"/><rect x="38" y="34" width="19" height="14" rx="6"/><rect x="63" y="34" width="19" height="14" rx="6"/><rect x="38" y="52" width="19" height="14" rx="6"/><rect x="63" y="52" width="19" height="14" rx="6"/></g>'],
+  'Giãn cơ':['#4f8f1f','<g fill="none" stroke="#4f8f1f" stroke-width="4" stroke-linecap="round"><circle cx="60" cy="18" r="6"/><path d="M60 26V50M60 32L40 22M60 32L80 22M60 50L48 68M60 50L72 68"/></g>'],
+  'Yoga':['#12807f','<g fill="none" stroke="#12807f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="18" r="6"/><path d="M60 26V46M60 34L46 46M60 34L74 46M60 46Q40 52 34 60H86Q80 52 60 46"/></g>']
+};
+function ytId(u){u=(u||'').trim();if(!u)return'';const m=u.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/)||u.match(/^([\w-]{11})$/);return m?m[1]:''}
+const VID_FILE=/^https?:\/\/\S+\.(mp4|webm|ogg)(\?\S*)?$/i;
+function ytSearch(e){return 'https://www.youtube.com/results?search_query='+encodeURIComponent('hướng dẫn tập '+e.name+' đúng kỹ thuật')}
+function videoBlock(e){
+  const v=(e.video||'').trim(),id=ytId(v);
+  if(id){const file=location.protocol==='file:';
+    return `<div class="vidbox"><div class="vidframe"><button class="vidplay" data-t="${esc(e.name)}" onclick="App.playVideo('${id}',this)" aria-label="Phát video hướng dẫn: ${esc(e.name)}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy"><span class="vidbtn" aria-hidden="true">▶</span></button></div>${file?'<p class="fine">Bạn đang mở file trực tiếp nên YouTube không cho phát trong trang (lỗi 153). Bấm phát sẽ mở video ở tab mới. Để xem ngay trong trang, hãy mở website bằng file <b>MO_WEBSITE.bat</b> (Windows) hoặc <b>MO_WEBSITE.command</b> (Mac) trong thư mục FitHealth.</p>':''}<div class="vidlinks"><a class="btn sec sm" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Mở trên YouTube ↗</a><a class="btn ghost sm" href="${ytSearch(e)}" target="_blank" rel="noopener">Xem thêm video khác</a></div></div>`}
+  if(VID_FILE.test(v))return `<div class="vidbox"><div class="vidframe"><video controls preload="metadata" aria-label="Video hướng dẫn: ${esc(e.name)}"><source src="${esc(v)}">Trình duyệt không hỗ trợ video.</video></div></div>`;
+  return `<div class="vidbox"><div class="vidempty"><b>Video hướng dẫn</b><span class="muted">Chưa có video riêng cho bài này. Bạn có thể tìm video hướng dẫn động tác trên YouTube.</span><a class="btn sm" href="${ytSearch(e)}" target="_blank" rel="noopener">Tìm video hướng dẫn ↗</a></div></div>`;
+}
+const PHOTO={'Cardio':['walk','center 22%'],'Sức mạnh':['squat','center 28%'],'Cơ bụng':['plank','center 62%'],'Giãn cơ':['stretch','center 48%'],'Yoga':['yoga','center 32%'],'Ăn uống':['meal','center']};
+const ARTCAT={'Kỹ thuật tập luyện':'Cardio','Chỉ số cơ thể':'Sức mạnh','Giấc ngủ':'Giãn cơ','Dinh dưỡng':'Ăn uống','Thói quen sinh hoạt':'Yoga'};
+function art(cat){const ph=PHOTO[cat]||PHOTO['Cardio'];return `<div class="art photo-art" style="background-image:url('assets/photos/${ph[0]}.jpg');background-size:cover;background-position:${ph[1]}" role="img" aria-label="Ảnh minh họa: ${esc(cat)}"></div>`;}
+const artFor=c=>art(ARTCAT[c]||'Cardio');
+function lineChart(pts,o={}){
+  if(pts.length<2)return'<p class="muted">Cần ít nhất 2 lần ghi cân nặng để vẽ biểu đồ.</p>';
+  const W=640,H=240,L=46,R=16,T=16,B=30,ys=pts.map(p=>p.y);if(o.target)ys.push(o.target);
+  let mn=Math.min(...ys),mx=Math.max(...ys);const pd=(mx-mn)*.18||1;mn-=pd;mx+=pd;
+  const X=i=>L+(W-L-R)*(i/(pts.length-1)),Y=v=>T+(H-T-B)*(1-(v-mn)/(mx-mn));
+  let g='';for(let k=0;k<4;k++){const v=mn+(mx-mn)*k/3,y=Y(v);g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${L-6}" y="${y+4}" text-anchor="end">${num(v,1)}</text>`}
+  const d=pts.map((p,i)=>`${i?'L':'M'}${X(i).toFixed(1)} ${Y(p.y).toFixed(1)}`).join('');
+  const dots=pts.map((p,i)=>`<circle cx="${X(i).toFixed(1)}" cy="${Y(p.y).toFixed(1)}" r="3.5" fill="var(--green)"><title>${esc(p.x)}: ${num(p.y,1)}</title></circle>`).join('');
+  const tg=o.target?`<line x1="${L}" x2="${W-R}" y1="${Y(o.target)}" y2="${Y(o.target)}" stroke="var(--blue)" stroke-dasharray="6 5" stroke-width="2"/><text x="${W-R}" y="${Y(o.target)-6}" text-anchor="end" style="fill:var(--blue)">Mục tiêu ${num(o.target,1)}</text>`:'';
+  const mid=Math.floor((pts.length-1)/2);
+  const xl=[0,mid,pts.length-1].filter((v,i,a)=>a.indexOf(v)===i).map(i=>`<text x="${X(i)}" y="${H-8}" text-anchor="${i===0?'start':i===pts.length-1?'end':'middle'}">${esc(pts[i].x)}</text>`).join('');
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Biểu đồ cân nặng theo thời gian, từ ${num(pts[0].y,1)} đến ${num(pts[pts.length-1].y,1)} ${o.unit||''}">${g}${tg}<path d="${d}" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round"/>${dots}${xl}</svg>`;
+}
+function barChart(data,label){
+  const W=640,H=220,L=36,R=10,T=14,B=30,mx=Math.max(1,...data.map(d=>d.v)),bw=(W-L-R)/data.length;
+  let g='';for(let k=0;k<=2;k++){const v=Math.round(mx*k/2),y=T+(H-T-B)*(1-k/2);g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--line)"/><text x="${L-6}" y="${y+4}" text-anchor="end">${v}</text>`}
+  const bars=data.map((d,i)=>{const h=(H-T-B)*d.v/mx,x=L+i*bw+bw*.2;return `<rect x="${x}" y="${H-B-h}" width="${bw*.6}" height="${h}" rx="4" fill="var(--blue)"><title>${esc(d.l)}: ${d.v}</title></rect><text x="${x+bw*.3}" y="${H-10}" text-anchor="middle">${esc(d.l)}</text>`}).join('');
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">${g}${bars}</svg>`;
+}
+
+/* ---------- UI plumbing ---------- */
+let post=null;
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2600)}
+function fld(f){
+  const v=f.value==null?'':f.value,id='f_'+f.name,req=f.required?' required':'';let c;
+  if(f.type==='select')c=`<select id="${id}" name="${f.name}"${req}>${opt(f.options,v)}</select>`;
+  else if(f.type==='textarea')c=`<textarea id="${id}" name="${f.name}" rows="${f.rows||4}"${req}>${esc(v)}</textarea>`;
+  else c=`<input id="${id}" name="${f.name}" type="${f.type||'text'}" value="${esc(v)}"${req}${f.type==='number'?' step="any"':''}${f.min!=null?` min="${f.min}"`:''}${f.max!=null?` max="${f.max}"`:''}${f.ph?` placeholder="${esc(f.ph)}"`:''}${f.ac?` autocomplete="${f.ac}"`:''}>`;
+  return `<div class="fld"><label for="${id}">${esc(f.label)}</label>${c}${f.hint?`<small>${esc(f.hint)}</small>`:''}</div>`;
+}
+const flds=a=>a.map(fld).join('');
+function modal(title,body,onSubmit,o={}){
+  const d=$('#dlg');
+  d.innerHTML=`<form class="mform"><h2 id="dlgt">${esc(title)}</h2>${body}<p class="err" id="merr" role="alert"></p><div class="mact"><button type="button" class="btn ghost" onclick="App.closeM()">Hủy</button><button class="btn${o.danger?' danger':''}">${esc(o.submit||'Lưu')}</button></div></form>`;
+  d.querySelector('form').onsubmit=async e=>{
+    e.preventDefault();
+    const r=await onSubmit(Object.fromEntries(new FormData(e.target)));
+    if(r===true){d.close();rerender()}else $('#merr').textContent=r||'';
+  };
+  if(!d.open)d.showModal();
+}
+function ask(msg,yes,btn){modal('Xác nhận',`<p>${esc(msg)}</p>`,()=>{yes();return true},{submit:btn||'Xác nhận',danger:true})}
+const go=p=>{if(location.hash==='#'+p)route();else location.hash='#'+p};
+let afterLogin=null;
+
+/* ---------- header ---------- */
+function drawHeader(path){
+  const u=me();
+  const links=[['/','Trang chủ'],['/bai-tap','Bài tập'],['/dinh-duong','Dinh dưỡng'],['/kien-thuc','Kiến thức'],['/lien-he','Liên hệ']];
+  const cur=l=>(l==='/'?path==='/':path===l||path.startsWith(l+'/'))?' aria-current="page"':'';
+  const acts=u?`<a class="btn sec sm" href="#/${u.role==='admin'?'quan-tri':'tai-khoan'}">${u.role==='admin'?'Quản trị':'Tài khoản'}</a><button class="btn ghost sm" onclick="App.logout()">Đăng xuất</button>`
+    :`<a class="btn ghost sm" href="#/dang-nhap">Đăng nhập</a><a class="btn sm" href="#/dang-ky">Đăng ký</a>`;
+  $('#top').innerHTML=`<div class="wrap">
+    <a class="logo" href="#/" aria-label="FitHealth – Trang chủ"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#0f7b4f"/><path d="M5 17H11L14 9L18 24L21 15L23 17H27" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>FitHealth</a>
+    <nav class="nav" aria-label="Điều hướng chính">${links.map(l=>`<a href="#${l[0]}"${cur(l[0])}>${l[1]}</a>`).join('')}</nav>
+    <div class="acts">${acts}</div>
+    <button class="btn ghost burger" aria-label="Mở menu" aria-expanded="false" onclick="App.menu(this)">Menu</button></div>`;
+}
+
+/* ---------- shells ---------- */
+function shell(kind,path,title,body,actions=''){
+  const U=[['/tai-khoan','Tổng quan'],['/tai-khoan/ho-so','Hồ sơ'],['/tai-khoan/bmi','Công cụ BMI'],['/tai-khoan/lich-tap','Lịch tập'],['/tai-khoan/an-uong','Nhật ký ăn uống'],['/tai-khoan/theo-doi','Theo dõi sức khỏe'],['/tai-khoan/bao-cao','Báo cáo tuần'],['/tai-khoan/gop-y','Góp ý của tôi']];
+  const A=[['/quan-tri','Tổng quan'],['/quan-tri/tai-khoan','Tài khoản'],['/quan-tri/bai-tap','Bài tập'],['/quan-tri/thuc-pham','Thực phẩm'],['/quan-tri/bai-viet','Bài viết'],['/quan-tri/gop-y','Góp ý']];
+  const L=kind==='admin'?A:U;
+  return `<div class="wrap shell"><nav class="side" aria-label="${kind==='admin'?'Menu quản trị':'Menu cá nhân'}"><span class="gl">${kind==='admin'?'Khu quản trị':'Khu cá nhân'}</span>${L.map(l=>`<a href="#${l[0]}"${l[0]===path?' aria-current="page"':''}>${l[1]}</a>`).join('')}</nav>
+  <section><div class="ph"><h1>${esc(title)}</h1>${actions}</div>${body}</section></div>`;
+}
+const pageHead=(t,s)=>`<div class="wrap pagehead"><h1>${esc(t)}</h1>${s?`<p>${esc(s)}</p>`:''}</div>`;
+
+/* ---------- PUBLIC VIEWS ---------- */
+function viewHome(){
+  const u=me(),cta=u?(u.role==='admin'?'/quan-tri':'/tai-khoan'):'/dang-ky';
+  const arts=DB.articles.filter(a=>a.status==='Đã xuất bản').sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)).slice(0,3);
+  post=()=>{['hb'].forEach(p=>{$('#'+p+'h').oninput=$('#'+p+'w').oninput=()=>updBmi(p);updBmi(p)})};
+  return `
+  <section class="hero"><div class="wrap hero-g">
+    <div>
+      <h1>Ghi lại buổi tập, bữa ăn và cân nặng ở một nơi.</h1>
+      <p class="lead">FitHealth giúp bạn lập lịch tập, tính khẩu phần ăn và theo dõi tiến độ mỗi ngày. Bắt đầu bằng việc xem chỉ số BMI của bạn ở bên cạnh.</p>
+      <div class="cta"><a class="btn lg" href="#${cta}">${u?'Vào trang của tôi':'Bắt đầu theo dõi sức khỏe'}</a><a class="btn sec lg" href="#/bai-tap">Xem bài tập</a></div>
+    </div>
+    <div class="bmi-panel"><h2>Tính BMI nhanh</h2>${bmiBox('hb')}<p class="fine">${esc(BMI_NOTE)}</p>${u?'':'<p class="fine" style="margin-top:6px"><a href="#/dang-ky">Đăng ký</a> để lưu lịch sử các lần đo.</p>'}</div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="shead"><h2>Chọn nhóm bài tập</h2><a href="#/bai-tap">Xem tất cả bài tập</a></div>
+    <div class="tiles">${CATS.map(c=>`<a class="tile" href="#/bai-tap" onclick="App.exf('cat','${c}')">${art(c)}<div class="tb"><h3>${c}</h3><span class="muted">${DB.exercises.filter(e=>e.cat===c&&e.active).length} bài tập</span></div></a>`).join('')}</div>
+  </div></section>
+
+  <section class="sec alt"><div class="wrap">
+    <div class="shead"><h2>Cách dùng FitHealth</h2></div>
+    <ol class="steps">
+      <li><h3>Đăng ký và đăng nhập</h3><span class="muted">Tạo tài khoản bằng email và mật khẩu.</span></li>
+      <li><h3>Cập nhật hồ sơ</h3><span class="muted">Nhập thông tin cá nhân và mục tiêu của bạn.</span></li>
+      <li><h3>Ghi cân nặng, xem BMI</h3><span class="muted">Chỉ số tham khảo, lưu lại theo thời gian.</span></li>
+      <li><h3>Tìm bài tập, tạo lịch</h3><span class="muted">Chọn bài tập, đặt số hiệp, số lần hoặc thời gian.</span></li>
+      <li><h3>Ghi kết quả mỗi ngày</h3><span class="muted">Buổi tập, bữa ăn, nước uống và giấc ngủ.</span></li>
+      <li><h3>Xem biểu đồ và lịch sử</h3><span class="muted">So tiến độ với mục tiêu bạn đã đặt.</span></li>
+    </ol>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="shead"><h2>Bài viết mới</h2><a href="#/kien-thuc">Xem tất cả bài viết</a></div>
+    <div class="cols3">${arts.map(a=>`<a class="post" href="#/kien-thuc/${a.id}">${artFor(a.category)}<span class="tag">${esc(a.category)}</span><h3 style="margin-top:8px">${esc(a.title)}</h3><span class="muted">${esc(a.content.slice(0,120))}…</span></a>`).join('')}</div>
+  </div></section>
+
+  <section class="sec" style="padding-top:0"><div class="wrap"><div class="band"><div><h2>Bắt đầu từ hôm nay</h2><p>Tài khoản dùng thử có sẵn dữ liệu mẫu để bạn xem các chức năng.</p></div><a class="btn lg" href="#${u?cta:'/dang-nhap'}">${u?'Vào trang của tôi':'Dùng thử ngay'}</a></div></div></section>`;
+}
+
+/* exercises */
+const EX={q:'',cat:'',muscle:'',diff:'',place:''};
+function exList(){
+  const q=EX.q.trim().toLowerCase();
+  return DB.exercises.filter(e=>e.active&&(!q||e.name.toLowerCase().includes(q))&&(!EX.cat||e.cat===EX.cat)&&(!EX.muscle||e.muscle===EX.muscle)&&(!EX.diff||e.diff===EX.diff)&&(!EX.place||e.place===EX.place));
+}
+function exDraw(){
+  const l=exList();
+  $('#exchips').innerHTML=['',...CATS].map(c=>`<button class="chip" aria-pressed="${EX.cat===c}" onclick="App.exf('cat','${c}')">${c||'Tất cả'}</button>`).join('');
+  $('#exres').innerHTML=l.length?`<div class="tiles">${l.map(e=>`<a class="tile" href="#/bai-tap/${e.id}">${art(e.cat)}<div class="tb"><h3>${esc(e.name)}</h3><div class="tags"><span class="tag">${esc(e.muscle)}</span><span class="tag t-${e.diff==='Dễ'?'green':e.diff==='Khó'?'red':'amber'}">${e.diff}</span><span class="tag">${esc(e.place)}</span>${e.video?'<span class="tag t-blue">▶ Có video</span>':''}</div></div></a>`).join('')}</div>`
+    :'<div class="empty">Không có bài tập phù hợp. Hãy thử bỏ bớt bộ lọc hoặc đổi từ khóa tìm kiếm.</div>';
+  $('#excount').textContent=`${l.length} bài tập`;
+}
+function viewExercises(){
+  post=exDraw;
+  return `${pageHead('Bài tập','Tìm bài tập theo tên, nhóm cơ, độ khó và nơi tập.')}
+  <div class="wrap" style="padding-bottom:56px">
+    <div class="filters">
+      <div class="fld" style="margin:0"><label for="exq">Tìm theo tên</label><input id="exq" type="search" value="${esc(EX.q)}" placeholder="Ví dụ: squat" oninput="App.exf('q',this.value)"></div>
+      <div class="fld" style="margin:0"><label for="exm">Nhóm cơ</label><select id="exm" onchange="App.exf('muscle',this.value)"><option value="">Tất cả</option>${opt(MUSCLES,EX.muscle)}</select></div>
+      <div class="fld" style="margin:0"><label for="exd">Độ khó</label><select id="exd" onchange="App.exf('diff',this.value)"><option value="">Tất cả</option>${opt(DIFFS,EX.diff)}</select></div>
+      <div class="fld" style="margin:0"><label for="exp">Nơi tập</label><select id="exp" onchange="App.exf('place',this.value)"><option value="">Tất cả</option>${opt(PLACES,EX.place)}</select></div>
+    </div>
+    <div class="chips" id="exchips" role="group" aria-label="Nhóm nội dung"></div>
+    <p class="muted" id="excount" aria-live="polite"></p>
+    <div id="exres"></div>
+  </div>`;
+}
+function viewExercise(id){
+  const e=exOf(id);
+  if(!e||!e.active)return view404('Không tìm thấy bài tập này.');
+  const u=me();
+  return `<div class="wrap"><p class="crumb"><a href="#/bai-tap">Bài tập</a> / ${esc(e.name)}</p>
+  <div class="detail"><div>${videoBlock(e)}${art(e.cat)}</div><div>
+    <h1>${esc(e.name)}</h1>
+    <div class="tags" style="margin-bottom:16px"><span class="tag t-blue">${esc(e.cat)}</span><span class="tag">Nhóm cơ: ${esc(e.muscle)}</span><span class="tag">Dụng cụ: ${esc(e.equip)}</span><span class="tag">${e.diff}</span><span class="tag">${esc(e.place)}</span></div>
+    <h2>Hướng dẫn</h2><ol class="steps-ol">${e.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>
+    <p class="note">Dừng tập nếu thấy đau nhói, chóng mặt hoặc khó thở bất thường. Nếu có bệnh nền hoặc chấn thương, hãy hỏi bác sĩ trước khi tập.</p>
+    <div style="margin-top:20px">${u&&u.role==='user'?`<button class="btn" onclick="App.addToPlan('${e.id}')">Thêm vào lịch tập</button>`:u?'':`<a class="btn sec" href="#/dang-nhap">Đăng nhập để thêm vào lịch tập</a>`}</div>
+  </div></div></div>`;
+}
+
+/* nutrition */
+const NU={q:''};
+function nuDraw(){
+  const q=NU.q.trim().toLowerCase(),l=DB.foods.filter(f=>!q||f.name.toLowerCase().includes(q));
+  $('#nures').innerHTML=l.length?`<div class="scroll"><table><thead><tr><th>Thực phẩm</th><th>Khẩu phần tham chiếu</th><th class="n">Năng lượng (kcal)</th><th class="n">Protein (g)</th><th class="n">Carbohydrate (g)</th><th class="n">Chất béo (g)</th></tr></thead><tbody>${l.map(f=>`<tr><td>${esc(f.name)}</td><td>${num(f.refQty,0)} ${esc(f.unit)}</td><td class="n">${num(f.cal,0)}</td><td class="n">${num(f.protein)}</td><td class="n">${num(f.carbs)}</td><td class="n">${num(f.fat)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Không tìm thấy thực phẩm nào khớp với từ khóa.</div>';
+}
+function calcFood(){
+  const f=foodOf($('#cf').value),q=parseFloat($('#cq').value),r=$('#cr');
+  if(!f)return;$('#cu').textContent=f.unit;
+  if(!(q>0)){r.innerHTML='<p class="muted">Nhập lượng lớn hơn 0 để tính.</p>';return}
+  const v=foodVals(f,q);
+  r.innerHTML=`<div class="macro"><div><b>${num(v.cal,0)}</b><span>kcal</span></div><div><b>${num(v.protein)}</b><span>Protein (g)</span></div><div><b>${num(v.carbs)}</b><span>Carb (g)</span></div><div><b>${num(v.fat)}</b><span>Chất béo (g)</span></div></div>`;
+}
+function calTarget(u){
+  if(!u)return null;const p=prof(u.id),lw=latestW(u.id),a=age(p.birthDate);
+  if(!p.heightCm||!lw||a==null||a<18||!p.gender)return null;
+  const bmr=10*lw.weight+6.25*p.heightCm-5*a+(p.gender==='Nam'?5:p.gender==='Nữ'?-161:-78);
+  const f={'Ít vận động':1.2,'Vận động nhẹ':1.375,'Vận động vừa':1.55,'Vận động nhiều':1.725}[p.activity]||1.2;
+  const tdee=bmr*f,adj=p.goal==='Giảm cân'?-400:p.goal==='Tăng cơ'?250:0;
+  return{tdee:Math.round(tdee),target:Math.round(Math.max(tdee+adj,1200)),goal:p.goal||''};
+}
+function calBar(kcal,g){
+  if(!g)return'';const pct=Math.round(kcal/g.target*100),w=Math.min(pct,100),left=g.target-kcal;
+  return `<div class="bar" role="progressbar" aria-valuenow="${w}" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ calo trong ngày"><i class="${pct>100?'over':''}" style="width:${w}%"></i></div>
+  <p class="fine">Mục tiêu tham khảo khoảng <b>${num(g.target,0)} kcal/ngày</b> (nhu cầu ước tính ${num(g.tdee,0)} kcal${g.goal?`, điều chỉnh theo mục tiêu “${esc(g.goal)}”`:''}). ${left>=0?`Còn khoảng <b>${num(left,0)} kcal</b>.`:`Đã vượt khoảng <b>${num(-left,0)} kcal</b>.`} Đây chỉ là ước tính (công thức Mifflin-St Jeor), không thay thế tư vấn của chuyên gia dinh dưỡng.</p>`;
+}
+function macroBox(t){return `<div class="macro"><div><b>${num(t.cal,0)}</b><span>kcal</span></div><div><b>${num(t.protein)}</b><span>Protein (g)</span></div><div><b>${num(t.carbs)}</b><span>Carbohydrate (g)</span></div><div><b>${num(t.fat)}</b><span>Chất béo (g)</span></div></div>`}
+function calCard(tot,day){
+  const u=me(),g=calTarget(u);
+  const rows=MEALS.map(t=>{const m=day.find(x=>x.type===t),sm=sumItems(m?m.items:[]),w=tot.cal>0?Math.round(sm.cal/tot.cal*100):0;
+    return `<div class="calrow"><span>${t}</span><div class="bar" aria-hidden="true"><i style="width:${w}%"></i></div><b>${num(sm.cal,0)} kcal</b></div>`}).join('');
+  return `<div class="pn calcard"><h2>Calo ngày ${vd(MD)}</h2>
+  <div class="calnum"><b>${num(tot.cal,0)}</b><span class="muted">kcal đã ăn</span></div>
+  ${g?calBar(tot.cal,g):`<p class="fine">Cập nhật chiều cao, ngày sinh, giới tính, mức vận động và ghi cân nặng để xem mục tiêu calo tham khảo. <a href="#/tai-khoan/ho-so">Mở hồ sơ</a></p>`}
+  ${macroBox(tot)}
+  <h3 style="margin:18px 0 6px;font-size:1rem">Calo theo từng bữa</h3><div class="calsplit">${rows}</div>
+  <p class="fine">Tổng được cộng từ lượng thực phẩm bạn nhập, theo tỷ lệ với khẩu phần tham chiếu.</p></div>`;
+}
+const DAY=[];
+function dayDraw(){
+  const r=$('#dayres');if(!r)return;
+  const tot=sumItems(DAY),u=me(),isU=u&&u.role==='user',g=isU?calTarget(u):null;
+  if(!DAY.length){r.innerHTML='<div class="empty">Chưa có món nào. Chọn bữa, thực phẩm và lượng ăn ở trên rồi bấm “Thêm vào ngày”.</div>';return}
+  const groups=MEALS.map(m=>{const its=DAY.map((it,i)=>({...it,i})).filter(it=>it.meal===m);if(!its.length)return'';const sm=sumItems(its);
+    return `<h3 style="margin:16px 0 2px;font-size:1rem">${m} · ${num(sm.cal,0)} kcal</h3>`+its.map(it=>{const f=foodOf(it.foodId),v=f?foodVals(f,it.qty):{cal:0};
+      return `<div class="item"><div>${esc(f?f.name:'Thực phẩm đã bị xóa')} · ${num(it.qty,0)} ${f?esc(f.unit):''}<br><small class="muted">${num(v.cal,0)} kcal</small></div><button class="btn ghost sm" aria-label="Xóa món khỏi ngày" onclick="App.dayDel(${it.i})">Xóa</button></div>`}).join('')}).join('');
+  r.innerHTML=`<div class="calnum"><b>${num(tot.cal,0)}</b><span class="muted">kcal trong ngày hôm nay</span></div>${calBar(tot.cal,g)}${macroBox(tot)}${groups}
+  <div class="ta" style="margin-top:16px">${isU?'<button class="btn" onclick="App.daySave()">Lưu vào nhật ký hôm nay</button>':'<a class="btn" href="#/dang-nhap">Đăng nhập để lưu và xem mục tiêu calo</a>'}<button class="btn ghost" onclick="App.dayClear()">Xóa tất cả</button></div>`;
+}
+function dayUnit(){const f=foodOf($('#df').value);if(f)$('#du').textContent=f.unit}
+function viewNutrition(){
+  post=()=>{nuDraw();calcFood();dayUnit();dayDraw()};
+  return `${pageHead('Dinh dưỡng','Tra cứu thực phẩm và tính năng lượng theo lượng bạn thực sự ăn.')}
+  <div class="wrap" style="padding-bottom:56px">
+    <div class="pn" id="daycalc"><h2>Tính calo ăn trong ngày</h2>
+      <p class="muted">Thêm từng món bạn ăn hôm nay, tổng calo và dinh dưỡng cập nhật ngay. Không cần đăng nhập.</p>
+      <div class="row"><div class="fld"><label for="dm">Bữa ăn</label><select id="dm">${opt(MEALS)}</select></div>
+      <div class="fld"><label for="df">Thực phẩm</label><select id="df" onchange="App.dayUnit()">${opt(DB.foods.map(f=>[f.id,f.name]))}</select></div>
+      <div class="fld"><label for="dq">Lượng ăn (<span id="du">g</span>)</label><input id="dq" type="number" step="any" min="0" value="100"></div></div>
+      <button class="btn" onclick="App.dayAdd()">Thêm vào ngày</button>
+      <div id="dayres" aria-live="polite" style="margin-top:18px"></div></div>
+    <div class="pn"><h2>Tính khẩu phần</h2>
+      <div class="row"><div class="fld"><label for="cf">Thực phẩm</label><select id="cf" onchange="App.calcFood()">${opt(DB.foods.map(f=>[f.id,f.name]))}</select></div>
+      <div class="fld"><label for="cq">Lượng ăn (<span id="cu">g</span>)</label><input id="cq" type="number" step="any" min="0" value="150" oninput="App.calcFood()"></div></div>
+      <div id="cr" aria-live="polite"></div>
+      <p class="fine">Công thức: giá trị trong bảng × lượng ăn ÷ lượng tham chiếu. Số liệu là giá trị gần đúng dùng cho demo.</p></div>
+    <div class="fld" style="max-width:380px"><label for="nuq">Tìm thực phẩm</label><input id="nuq" type="search" value="${esc(NU.q)}" oninput="App.nuf(this.value)" placeholder="Ví dụ: gà"></div>
+    <div id="nures"></div>
+    ${me()?'':'<p class="muted" style="margin-top:16px"><a href="#/dang-ky">Đăng ký</a> để ghi nhật ký ăn uống và xem tổng dinh dưỡng mỗi ngày.</p>'}
+  </div>`;
+}
+
+/* articles */
+const AR={q:'',cat:''};
+function arDraw(){
+  const q=AR.q.trim().toLowerCase(),all=DB.articles.filter(a=>a.status==='Đã xuất bản').sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt));
+  const cats=['',...new Set(all.map(a=>a.category))];
+  const l=all.filter(a=>(!AR.cat||a.category===AR.cat)&&(!q||(a.title+' '+a.content).toLowerCase().includes(q)));
+  $('#archips').innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${AR.cat===c}" onclick="App.arf('cat',this.dataset.c)" data-c="${esc(c)}">${esc(c||'Tất cả')}</button>`).join('');
+  $('#arres').innerHTML=l.length?`<div class="cols3">${l.map(a=>`<a class="post" href="#/kien-thuc/${a.id}">${artFor(a.category)}<span class="tag">${esc(a.category)}</span><h3 style="margin-top:8px">${esc(a.title)}</h3><p class="muted" style="margin-bottom:6px">${esc(a.content.slice(0,140))}…</p><small class="muted">${vd(a.publishedAt)} · ${esc(a.author)}</small></a>`).join('')}</div>`:'<div class="empty">Không có bài viết phù hợp.</div>';
+}
+function viewArticles(){
+  post=arDraw;
+  return `${pageHead('Kiến thức','Bài viết về kỹ thuật tập luyện, dinh dưỡng, giấc ngủ và thói quen sinh hoạt.')}
+  <div class="wrap" style="padding-bottom:56px"><div class="fld" style="max-width:380px"><label for="arq">Tìm bài viết</label><input id="arq" type="search" value="${esc(AR.q)}" oninput="App.arf('q',this.value)" placeholder="Ví dụ: giấc ngủ"></div>
+  <div class="chips" id="archips" role="group" aria-label="Chủ đề"></div><div id="arres"></div></div>`;
+}
+function viewArticle(id){
+  const a=DB.articles.find(x=>x.id===id&&x.status==='Đã xuất bản');
+  if(!a)return view404('Không tìm thấy bài viết này.');
+  const u=me(),fav=u&&DB.favorites.some(f=>f.userId===u.id&&f.articleId===a.id);
+  return `<div class="wrap" style="max-width:820px"><p class="crumb"><a href="#/kien-thuc">Kiến thức</a> / ${esc(a.category)}</p>
+  <div class="artcover">${artFor(a.category)}</div>
+  <article style="padding-bottom:56px"><h1>${esc(a.title)}</h1>
+  <p class="muted">${vd(a.publishedAt)} · ${esc(a.author)} ${a.sample?'<span class="tag" style="margin-left:6px">Bài viết mẫu</span>':''}</p>
+  <div class="prose">${a.content.split(/\n\n+/).map(p=>`<p>${esc(p)}</p>`).join('')}</div>
+  <p class="note"><strong>Nguồn tham khảo:</strong> ${a.sourceUrl?`<a href="${esc(a.sourceUrl)}" target="_blank" rel="noopener">${esc(a.source)}</a>`:esc(a.source||'Chưa có')}</p>
+  ${u&&u.role==='user'?`<button class="btn sec" onclick="App.fav('${a.id}')">${fav?'Bỏ khỏi bài yêu thích':'Lưu bài yêu thích'}</button>`:''}
+  </article></div>`;
+}
+
+/* contact */
+function viewContact(){
+  const u=me();
+  const faqs=[['FitHealth có thay thế bác sĩ hoặc chuyên gia dinh dưỡng không?','Không. Nội dung chỉ mang tính tham khảo. Website không chẩn đoán bệnh hoặc kê đơn.'],['BMI có chính xác không?','BMI là chỉ số sàng lọc nhanh, không phân biệt cơ và mỡ. Hãy dùng như một con số tham khảo.'],['Dữ liệu của tôi được lưu ở đâu?','Trong bản demo này, dữ liệu lưu ngay trong trình duyệt của bạn và không gửi đi đâu.'],['Tôi có thể xóa dữ liệu của mình không?','Có. Bạn có thể xóa từng bản ghi trong các mục Lịch tập, Ăn uống, Theo dõi và BMI.'],['Làm sao để nhận phản hồi cho góp ý?','Đăng nhập, gửi góp ý, rồi xem trạng thái và câu trả lời trong mục Góp ý của tôi.']];
+  return `${pageHead('Liên hệ và góp ý','Chúng tôi đọc mọi góp ý và phản hồi trong tài khoản của bạn.')}
+  <div class="wrap two" style="padding-bottom:56px">
+    <div><div class="pn"><h2>Thông tin liên hệ</h2><p style="margin:0 0 6px">Email: support@fithealth.example</p><p style="margin:0 0 6px">Giờ hỗ trợ: Thứ Hai – Thứ Sáu, 8:00–17:00</p><p class="fine" style="margin:0">Thông tin liên hệ trong bản demo là dữ liệu mẫu.</p></div>
+    <h2>Câu hỏi thường gặp</h2>${faqs.map(f=>`<details class="faq"><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join('')}</div>
+    <div class="pn"><h2>Gửi góp ý</h2>${u&&u.role==='user'?`<form onsubmit="return App.sendFb(event)">${flds([{name:'subject',label:'Tiêu đề',required:true},{name:'content',label:'Nội dung',type:'textarea',required:true}])}<p class="err" id="fberr"></p><button class="btn">Gửi góp ý</button></form>`:`<p>Bạn cần đăng nhập để gửi góp ý và nhận phản hồi.</p><a class="btn" href="#/dang-nhap">Đăng nhập</a>`}</div>
+  </div>`;
+}
+function view404(m){return `<div class="wrap pagehead" style="padding-bottom:80px"><h1>Không tìm thấy trang</h1><p>${esc(m||'Đường dẫn bạn mở không tồn tại.')}</p><a class="btn" href="#/">Về trang chủ</a></div>`}
+
+/* auth */
+function viewLogin(){
+  return `<div class="auth"><div class="pn"><h1 style="font-size:1.7rem">Đăng nhập</h1>
+  <div class="demo"><strong>Tài khoản dùng thử</strong><br>Người dùng: <code>demo@fithealth.vn</code> / <code>Demo@123</code><br>Quản trị: <code>admin@fithealth.vn</code> / <code>Admin@123</code></div>
+  <form onsubmit="return App.login(event)">${flds([{name:'email',label:'Email',type:'email',required:true,ac:'username'},{name:'password',label:'Mật khẩu',type:'password',required:true,ac:'current-password'}])}<p class="err" id="aerr" role="alert"></p><button class="btn" style="width:100%">Đăng nhập</button></form>
+  <p class="muted" style="margin:14px 0 0">Chưa có tài khoản? <a href="#/dang-ky">Đăng ký</a></p></div></div>`;
+}
+function viewRegister(){
+  return `<div class="auth"><div class="pn"><h1 style="font-size:1.7rem">Đăng ký</h1>
+  <form onsubmit="return App.register(event)">${flds([{name:'fullName',label:'Họ tên',required:true,ac:'name'},{name:'email',label:'Email',type:'email',required:true,ac:'username'},{name:'password',label:'Mật khẩu',type:'password',required:true,ac:'new-password',hint:'Ít nhất 8 ký tự, gồm cả chữ và số.'},{name:'password2',label:'Nhập lại mật khẩu',type:'password',required:true,ac:'new-password'}])}<p class="err" id="aerr" role="alert"></p><button class="btn" style="width:100%">Tạo tài khoản</button></form>
+  <p class="muted" style="margin:14px 0 0">Đã có tài khoản? <a href="#/dang-nhap">Đăng nhập</a></p></div></div>`;
+}
+
+/* ---------- USER VIEWS ---------- */
+function uOverview(){
+  const u=me(),p=prof(u.id),lw=latestW(u.id),t=todayISO();
+  const bmi=lw&&p.heightCm?bmiOf(p.heightCm,lw.weight):null,bc=bmi?bmiCat(bmi):null;
+  const plans=DB.plans.filter(x=>x.userId===u.id),done=plans.filter(x=>planStatus(x)==='Hoàn thành');
+  const wkStart=addDays(t,-6),weekDone=done.filter(x=>x.date>=wkStart&&x.date<=t).length;
+  const tl=myLogs(u.id).find(l=>l.date===t),tm=sumItems(DB.meals.filter(m=>m.userId===u.id&&m.date===t).flatMap(m=>m.items));
+  const next=plans.filter(x=>planStatus(x)!=='Hoàn thành'&&x.date>=t).sort((a,b)=>a.date.localeCompare(b.date))[0];
+  const logs=myLogs(u.id).filter(l=>l.weight>0&&l.date>=addDays(t,-13)&&l.date<=t);
+  const steps=[['Cập nhật hồ sơ và mục tiêu',!!(p.heightCm&&p.goal),'/tai-khoan/ho-so'],['Ghi cân nặng',!!lw,'/tai-khoan/theo-doi'],['Xem chỉ số BMI tham khảo',DB.bmi.some(b=>b.userId===u.id),'/tai-khoan/bmi'],['Tạo lịch tập',plans.length>0,'/tai-khoan/lich-tap'],['Ghi bữa ăn',DB.meals.some(m=>m.userId===u.id),'/tai-khoan/an-uong']];
+  return shell('user','/tai-khoan',`Xin chào, ${(p.fullName||'bạn').split(' (')[0]}`,`
+  <div class="stats">
+    <div class="stat"><b>${lw?num(lw.weight,1)+' kg':'—'}</b><span>Cân nặng gần nhất</span></div>
+    <div class="stat"><b>${bmi?num(bmi,1):'—'}</b><span>BMI ${bc?`<span class="tag t-${bc[1]}">${bc[0]}</span>`:'(cần chiều cao và cân nặng)'}</span></div>
+    <div class="stat"><b>${weekDone}</b><span>Buổi tập hoàn thành trong 7 ngày</span></div>
+    <div class="stat"><b>${tl&&tl.water?num(tl.water,0):0} ml</b><span>Nước uống hôm nay</span></div>
+    <div class="stat"><b>${num(tm.cal,0)}</b><span>kcal đã ghi hôm nay${(()=>{const g=calTarget(u);return g?' · mục tiêu ~'+num(g.target,0):''})()}</span></div>
+  </div>
+  <div class="two"><div class="pn"><h2>Cân nặng 14 ngày gần đây</h2>${lineChart(logs.map(l=>({x:vd(l.date).slice(0,5),y:l.weight})),{target:p.targetWeight,unit:'kg'})}</div>
+  <div><div class="pn"><h2>Buổi tập tiếp theo</h2>${next?`<p style="margin:0 0 4px"><strong>${esc(next.name)}</strong></p><p class="muted" style="margin:0 0 12px">${vd(next.date)} · ${next.items.length} bài · ${planStatus(next)}</p><a class="btn sec sm" href="#/tai-khoan/lich-tap">Mở lịch tập</a>`:`<p class="muted">Chưa có lịch sắp tới.</p><a class="btn sm" href="#/tai-khoan/lich-tap">Tạo lịch tập</a>`}</div>
+  <div class="pn"><h2>Bắt đầu theo dõi</h2><ul class="check">${steps.map(s=>`<li class="${s[1]?'on':''}"><span class="dot" aria-hidden="true">${s[1]?'✓':''}</span><a href="#${s[2]}">${s[0]}</a><span class="muted" style="font-size:.85rem">${s[1]?'(đã xong)':''}</span></li>`).join('')}</ul></div></div></div>
+  <p class="fine">Tổng số buổi tập đã hoàn thành: ${done.length}. Dữ liệu chỉ mang tính theo dõi cá nhân, không phải tư vấn y tế.</p>`);
+}
+
+function uProfile(){
+  const u=me(),p=prof(u.id);
+  return shell('user','/tai-khoan/ho-so','Hồ sơ cá nhân',`
+  <div class="two"><div class="pn"><h2>Thông tin cá nhân</h2><form onsubmit="return App.saveProfile(event)">
+    ${flds([{name:'fullName',label:'Họ tên',value:p.fullName,required:true},{name:'birthDate',label:'Ngày sinh',type:'date',value:p.birthDate,max:todayISO()},{name:'gender',label:'Giới tính',type:'select',options:['Nữ','Nam','Khác'],value:p.gender},{name:'heightCm',label:'Chiều cao (cm)',type:'number',value:p.heightCm,min:100,max:250},{name:'activity',label:'Mức độ vận động',type:'select',options:ACTS,value:p.activity},{name:'goal',label:'Mục tiêu',type:'select',options:GOALS,value:p.goal},{name:'targetWeight',label:'Cân nặng mục tiêu (kg)',type:'number',value:p.targetWeight,min:20,max:300}])}
+    <p class="err" id="perr" role="alert"></p><button class="btn">Lưu hồ sơ</button></form></div>
+  <div class="pn"><h2>Đổi mật khẩu</h2><p class="muted">Email đăng nhập: ${esc(u.email)}</p><form onsubmit="return App.chPw(event)">
+    ${flds([{name:'old',label:'Mật khẩu hiện tại',type:'password',required:true,ac:'current-password'},{name:'new1',label:'Mật khẩu mới',type:'password',required:true,ac:'new-password',hint:'Ít nhất 8 ký tự, gồm cả chữ và số.'},{name:'new2',label:'Nhập lại mật khẩu mới',type:'password',required:true,ac:'new-password'}])}
+    <p class="err" id="werr" role="alert"></p><button class="btn sec">Đổi mật khẩu</button></form></div></div>`);
+}
+
+function uBmi(){
+  const u=me(),p=prof(u.id),a=age(p.birthDate),lw=latestW(u.id);
+  const hist=DB.bmi.filter(b=>b.userId===u.id).sort(byDateDesc);
+  if(a!==null&&a<18)return shell('user','/tai-khoan/bmi','Công cụ BMI','<div class="pn"><p>Công cụ BMI trong phiên bản này chỉ dành cho người từ 18 tuổi trở lên. Với trẻ em và thanh thiếu niên, hãy hỏi bác sĩ hoặc chuyên gia dinh dưỡng.</p></div>');
+  post=()=>{$('#ub'+'h').oninput=$('#ub'+'w').oninput=()=>updBmi('ub');updBmi('ub')};
+  return shell('user','/tai-khoan/bmi','Công cụ BMI',`
+  <div class="pn" style="max-width:640px"><h2>Tính BMI</h2><p class="muted">BMI = cân nặng (kg) ÷ [chiều cao (m)]². Đơn vị: centimet và kilogam.</p>${bmiBox('ub',p.heightCm,lw?lw.weight:'')}<p class="fine">${esc(BMI_NOTE)}</p><div style="margin-top:12px"><button class="btn" onclick="App.saveBmi()">Lưu vào lịch sử</button></div></div>
+  <div class="pn"><h2>Lịch sử đo</h2>${hist.length?`<div class="scroll"><table><thead><tr><th>Ngày</th><th class="n">Chiều cao (cm)</th><th class="n">Cân nặng (kg)</th><th class="n">BMI</th><th>Phân loại</th><th></th></tr></thead><tbody>${hist.map(b=>{const c=bmiCat(b.bmi);return `<tr><td>${vd(b.date)}</td><td class="n">${num(b.heightCm,1)}</td><td class="n">${num(b.weight,1)}</td><td class="n">${num(b.bmi,1)}</td><td><span class="tag t-${c[1]}">${c[0]}</span></td><td><button class="btn danger sm" onclick="App.delBmi('${b.id}')">Xóa</button></td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty">Chưa có lần đo nào. Nhập số liệu và chọn “Lưu vào lịch sử”.</div>'}</div>`);
+}
+
+function uPlans(){
+  const u=me(),plans=DB.plans.filter(p=>p.userId===u.id).sort(byDateDesc),t=todayISO();
+  const open=plans.filter(p=>planStatus(p)!=='Hoàn thành'),done=plans.filter(p=>planStatus(p)==='Hoàn thành');
+  const pl=p=>{
+    const st=planStatus(p),c=st==='Hoàn thành'?'green':st==='Đang tập'?'blue':'';
+    const range=p.span==='week'?`${vd(p.date)} – ${vd(addDays(p.date,6))}`:vd(p.date);
+    return `<div class="pn"><div class="plan-h"><div><h3>${esc(p.name)}</h3><span class="muted">${p.span==='week'?'Lịch tuần: ':'Ngày '}${range}</span></div><div class="ta"><span class="tag ${c?'t-'+c:''}">${st}</span><button class="btn sm" onclick="App.beginWorkout('${p.id}')">Bắt đầu tập</button><button class="btn sec sm" onclick="App.addItem('${p.id}')">Thêm bài tập</button><button class="btn danger sm" onclick="App.delPlan('${p.id}')">Xóa lịch</button></div></div>
+    ${p.items.length?p.items.map(i=>{const e=exOf(i.exId);const spec=[i.sets?i.sets+' hiệp':'',i.reps?i.reps+' lần':'',i.duration?i.duration+' phút':''].filter(Boolean).join(' · ');
+      return `<div class="item${i.done?' done':''}"><div><span class="nm">${esc(e?e.name:'Bài tập đã bị xóa')}</span><br><small class="muted">Kế hoạch: ${spec}${i.done?` · Thực tế: ${[i.actual.sets?i.actual.sets+' hiệp':'',i.actual.reps?i.actual.reps+' lần':'',i.actual.duration?i.actual.duration+' phút':''].filter(Boolean).join(' · ')||'—'}${i.actual.notes?' · '+esc(i.actual.notes):''}`:''}</small></div><div class="ta">${i.done?`<button class="btn ghost sm" onclick="App.undoItem('${p.id}','${i.id}')">Bỏ đánh dấu</button>`:`<button class="btn sm" onclick="App.doneItem('${p.id}','${i.id}')">Hoàn thành</button>`}<button class="btn ghost sm" aria-label="Xóa bài tập khỏi lịch" onclick="App.delItem('${p.id}','${i.id}')">Xóa</button></div></div>`}).join(''):'<p class="muted" style="margin:8px 0 0">Lịch này chưa có bài tập. Chọn “Thêm bài tập” để bắt đầu.</p>'}</div>`;
+  };
+  return shell('user','/tai-khoan/lich-tap','Lịch tập',`
+  <div class="stats"><div class="stat"><b>${done.length}</b><span>Buổi tập đã hoàn thành</span></div><div class="stat"><b>${open.length}</b><span>Lịch đang mở</span></div></div>
+  <h2>Lịch đang mở</h2>${open.length?open.map(pl).join(''):'<div class="empty" style="margin-bottom:20px">Bạn chưa có lịch nào đang mở. Hãy tạo lịch theo ngày hoặc theo tuần.</div>'}
+  <h2 style="margin-top:28px">Đã hoàn thành</h2>${done.length?done.map(pl).join(''):'<p class="muted">Chưa có buổi tập nào hoàn thành.</p>'}`,
+  `<button class="btn" onclick="App.newPlan()">Tạo lịch tập</button>`);
+}
+
+let MD=todayISO();
+function uMeals(){
+  const u=me(),day=DB.meals.filter(m=>m.userId===u.id&&m.date===MD),tot=sumItems(day.flatMap(m=>m.items));
+  const sec=type=>{const m=day.find(x=>x.type===type),its=m?m.items:[],s=sumItems(its);
+    return `<div class="pn"><div class="plan-h"><h3>${type}</h3><div class="ta"><span class="tag">${num(s.cal,0)} kcal</span><button class="btn sec sm" onclick="App.addFood('${type}')">Thêm thực phẩm</button></div></div>
+    ${its.length?its.map((it,ix)=>{const f=foodOf(it.foodId),v=f?foodVals(f,it.qty):{cal:0,protein:0,carbs:0,fat:0};return `<div class="item"><div>${esc(f?f.name:'Thực phẩm đã bị xóa')} · ${num(it.qty,0)} ${f?esc(f.unit):''}<br><small class="muted">${num(v.cal,0)} kcal · P ${num(v.protein)} g · C ${num(v.carbs)} g · F ${num(v.fat)} g</small></div><button class="btn ghost sm" aria-label="Xóa thực phẩm khỏi bữa ăn" onclick="App.delFood('${m.id}',${ix})">Xóa</button></div>`}).join(''):'<p class="muted" style="margin:6px 0 0">Chưa ghi gì cho bữa này.</p>'}</div>`};
+  return shell('user','/tai-khoan/an-uong','Nhật ký ăn uống',`
+  <div class="fld" style="max-width:220px"><label for="md">Ngày</label><input id="md" type="date" value="${MD}" max="${todayISO()}" onchange="App.setMd(this.value)"></div>
+  ${calCard(tot,day)}
+  ${MEALS.map(sec).join('')}`);
+}
+
+function uHealth(){
+  const u=me(),p=prof(u.id),logs=myLogs(u.id),wl=logs.filter(l=>l.weight>0),t=todayISO(),tl=logs.find(l=>l.date===t)||{};
+  const start=wl[0],cur=wl[wl.length-1];let prog='';
+  if(start&&cur&&p.targetWeight&&start.weight!==p.targetWeight){
+    const pc=Math.max(0,Math.min(1,(cur.weight-start.weight)/(p.targetWeight-start.weight)));
+    prog=`<div class="pn"><h2>Tiến độ so với mục tiêu</h2><p style="margin:0 0 8px">Từ ${num(start.weight,1)} kg (${vd(start.date)}) đến ${num(cur.weight,1)} kg hiện tại. Mục tiêu: ${num(p.targetWeight,1)} kg.</p><div class="bar" role="progressbar" aria-valuenow="${Math.round(pc*100)}" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ đến mục tiêu"><i style="width:${pc*100}%"></i></div><p class="fine">Đã đi được khoảng ${Math.round(pc*100)}% quãng đường đến mục tiêu.</p></div>`;
+  }else if(!p.targetWeight)prog='<div class="pn"><p class="muted" style="margin:0">Đặt cân nặng mục tiêu trong <a href="#/tai-khoan/ho-so">Hồ sơ</a> để xem tiến độ.</p></div>';
+  return shell('user','/tai-khoan/theo-doi','Theo dõi sức khỏe',`
+  <div class="two"><div class="pn"><h2>Ghi nhận hằng ngày</h2><form onsubmit="return App.saveHealth(event)">
+    ${flds([{name:'date',label:'Ngày',type:'date',value:t,max:t},{name:'weight',label:'Cân nặng (kg)',type:'number',value:tl.weight||'',min:20,max:300},{name:'water',label:'Nước uống (ml)',type:'number',value:tl.water||'',min:0,max:10000},{name:'sleep',label:'Giấc ngủ (giờ)',type:'number',value:tl.sleep||'',min:0,max:24},{name:'notes',label:'Ghi chú',type:'textarea',rows:2,value:tl.notes||''}])}
+    <p class="err" id="herr" role="alert"></p><div class="ta"><button class="btn">Lưu ghi nhận</button><button type="button" class="btn sec" onclick="App.addWater()">+250 ml nước hôm nay</button></div></form></div>
+  <div class="pn"><h2>Biểu đồ cân nặng</h2>${lineChart(wl.map(l=>({x:vd(l.date).slice(0,5),y:l.weight})),{target:p.targetWeight,unit:'kg'})}</div></div>
+  ${prog}
+  <div class="pn"><h2>Lịch sử</h2>${logs.length?`<div class="scroll"><table><thead><tr><th>Ngày</th><th class="n">Cân nặng (kg)</th><th class="n">Nước (ml)</th><th class="n">Ngủ (giờ)</th><th>Ghi chú</th><th></th></tr></thead><tbody>${[...logs].reverse().map(l=>`<tr><td>${vd(l.date)}</td><td class="n">${l.weight?num(l.weight,1):'—'}</td><td class="n">${l.water?num(l.water,0):'—'}</td><td class="n">${l.sleep?num(l.sleep,1):'—'}</td><td>${esc(l.notes)}</td><td><button class="btn danger sm" onclick="App.delHealth('${l.id}')">Xóa</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Chưa có ghi nhận nào. Nhập cân nặng, nước uống hoặc giấc ngủ ở trên.</div>'}</div>`);
+}
+
+function uFeedback(){
+  const u=me(),l=DB.feedbacks.filter(f=>f.userId===u.id).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+  return shell('user','/tai-khoan/gop-y','Góp ý của tôi',`
+  <div class="two"><div class="pn"><h2>Gửi góp ý mới</h2><form onsubmit="return App.sendFb(event)">${flds([{name:'subject',label:'Tiêu đề',required:true},{name:'content',label:'Nội dung',type:'textarea',required:true}])}<p class="err" id="fberr"></p><button class="btn">Gửi góp ý</button></form></div>
+  <div>${l.length?l.map(f=>`<div class="pn"><div class="plan-h"><h3>${esc(f.subject)}</h3><span class="tag ${f.status==='Đã phản hồi'?'t-green':f.status==='Đang xử lý'?'t-blue':''}">${f.status}</span></div><p class="muted" style="margin-bottom:6px">${vd(f.createdAt)}</p><p>${esc(f.content)}</p>${f.reply?`<div class="note"><strong>Phản hồi (${vd(f.repliedAt)}):</strong> ${esc(f.reply)}</div>`:''}</div>`).join(''):'<div class="empty">Bạn chưa gửi góp ý nào.</div>'}</div></div>`);
+}
+
+/* ---------- ADMIN VIEWS ---------- */
+function aOverview(){
+  const t=todayISO(),users=DB.users.filter(u=>u.role==='user');
+  const days=[...Array(7)].map((_,i)=>addDays(t,i-6));
+  const use=days.map(d=>({l:vd(d).slice(0,5),v:DB.healthLogs.filter(x=>x.date===d).length+DB.meals.filter(x=>x.date===d).length+DB.plans.flatMap(p=>p.items).filter(i=>i.completedOn===d).length}));
+  return shell('admin','/quan-tri','Tổng quan quản trị',`
+  <div class="stats"><div class="stat"><b>${users.length}</b><span>Người dùng (${users.filter(u=>u.active).length} đang hoạt động)</span></div><div class="stat"><b>${DB.exercises.length}</b><span>Bài tập (${DB.exercises.filter(e=>e.active).length} hiển thị)</span></div><div class="stat"><b>${DB.articles.filter(a=>a.status==='Đã xuất bản').length}</b><span>Bài viết đã xuất bản</span></div><div class="stat"><b>${DB.foods.length}</b><span>Thực phẩm</span></div><div class="stat"><b>${DB.feedbacks.filter(f=>f.status==='Mới').length}</b><span>Góp ý chưa xử lý</span></div></div>
+  <div class="pn"><h2>Mức độ sử dụng 7 ngày qua</h2><p class="muted">Số ghi nhận cân nặng/nước/ngủ, bữa ăn và bài tập hoàn thành mỗi ngày.</p>${barChart(use,'Biểu đồ cột số lượt ghi nhận trong 7 ngày gần nhất')}</div>`);
+}
+let UQ='';
+function aUsers(){
+  const q=UQ.trim().toLowerCase(),l=DB.users.filter(u=>!q||u.email.toLowerCase().includes(q)||(prof(u.id).fullName||'').toLowerCase().includes(q)),m=me();
+  return shell('admin','/quan-tri/tai-khoan','Tài khoản',`
+  <div class="fld" style="max-width:380px"><label for="uq">Tìm theo email hoặc họ tên</label><input id="uq" type="search" value="${esc(UQ)}" oninput="App.uq(this.value)"></div>
+  <div id="ures">${userTable(l,m)}</div>`);
+}
+function userTable(l,m){
+  return `<div class="scroll"><table><thead><tr><th>Email</th><th>Họ tên</th><th>Ngày tạo</th><th>Vai trò</th><th>Trạng thái</th><th></th></tr></thead><tbody>${l.map(u=>`<tr><td>${esc(u.email)}</td><td>${esc(prof(u.id).fullName||'—')}</td><td>${vd(u.createdAt)}</td><td>${u.id===m.id?(u.role==='admin'?'Quản trị viên':'Người dùng'):`<select aria-label="Vai trò của ${esc(u.email)}" onchange="App.setRole('${u.id}',this.value)"><option value="user"${u.role==='user'?' selected':''}>Người dùng</option><option value="admin"${u.role==='admin'?' selected':''}>Quản trị viên</option></select>`}</td><td><span class="tag ${u.active?'t-green':'t-red'}">${u.active?'Hoạt động':'Đã khóa'}</span></td><td>${u.id===m.id?'<small class="muted">Tài khoản của bạn</small>':`<button class="btn ${u.active?'danger':'sec'} sm" onclick="App.toggleUser('${u.id}')">${u.active?'Khóa':'Mở khóa'}</button>`}</td></tr>`).join('')||'<tr><td colspan="6">Không tìm thấy tài khoản.</td></tr>'}</tbody></table></div>`;
+}
+function aExercises(){
+  return shell('admin','/quan-tri/bai-tap','Quản lý bài tập',`<div class="scroll"><table><thead><tr><th>Tên</th><th>Nhóm</th><th>Nhóm cơ</th><th>Độ khó</th><th>Nơi tập</th><th>Video</th><th>Trạng thái</th><th></th></tr></thead><tbody>${DB.exercises.map(e=>`<tr><td>${esc(e.name)}</td><td>${esc(e.cat)}</td><td>${esc(e.muscle)}</td><td>${e.diff}</td><td>${esc(e.place)}</td><td>${e.video?'✓':'—'}</td><td><span class="tag ${e.active?'t-green':''}">${e.active?'Hiển thị':'Đã ẩn'}</span></td><td><div class="ta"><button class="btn sec sm" onclick="App.editEx('${e.id}')">Sửa</button><button class="btn ghost sm" onclick="App.hideEx('${e.id}')">${e.active?'Ẩn':'Hiện'}</button><button class="btn danger sm" onclick="App.delEx('${e.id}')">Xóa</button></div></td></tr>`).join('')}</tbody></table></div>`,`<button class="btn" onclick="App.editEx()">Thêm bài tập</button>`);
+}
+function aFoods(){
+  return shell('admin','/quan-tri/thuc-pham','Quản lý thực phẩm',`<div class="scroll"><table><thead><tr><th>Tên</th><th>Tham chiếu</th><th class="n">kcal</th><th class="n">Protein</th><th class="n">Carb</th><th class="n">Béo</th><th></th></tr></thead><tbody>${DB.foods.map(f=>`<tr><td>${esc(f.name)}</td><td>${num(f.refQty,0)} ${esc(f.unit)}</td><td class="n">${num(f.cal,0)}</td><td class="n">${num(f.protein)}</td><td class="n">${num(f.carbs)}</td><td class="n">${num(f.fat)}</td><td><div class="ta"><button class="btn sec sm" onclick="App.editFood('${f.id}')">Sửa</button><button class="btn danger sm" onclick="App.delFoodItem('${f.id}')">Xóa</button></div></td></tr>`).join('')}</tbody></table></div>`,`<button class="btn" onclick="App.editFood()">Thêm thực phẩm</button>`);
+}
+function aArticles(){
+  return shell('admin','/quan-tri/bai-viet','Quản lý bài viết',`<div class="scroll"><table><thead><tr><th>Tiêu đề</th><th>Chủ đề</th><th>Ngày đăng</th><th>Trạng thái</th><th></th></tr></thead><tbody>${[...DB.articles].sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)).map(a=>`<tr><td>${esc(a.title)}</td><td>${esc(a.category)}</td><td>${vd(a.publishedAt)}</td><td><span class="tag ${a.status==='Đã xuất bản'?'t-green':''}">${a.status}</span></td><td><div class="ta"><button class="btn sec sm" onclick="App.editArt('${a.id}')">Sửa</button><button class="btn ghost sm" onclick="App.pubArt('${a.id}')">${a.status==='Đã xuất bản'?'Ẩn':'Xuất bản'}</button><button class="btn danger sm" onclick="App.delArt('${a.id}')">Xóa</button></div></td></tr>`).join('')}</tbody></table></div>`,`<button class="btn" onclick="App.editArt()">Soạn bài viết</button>`);
+}
+function aFeedback(){
+  const l=[...DB.feedbacks].sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+  return shell('admin','/quan-tri/gop-y','Góp ý',l.length?l.map(f=>{const u=DB.users.find(x=>x.id===f.userId);return `<div class="pn"><div class="plan-h"><div><h3>${esc(f.subject)}</h3><span class="muted">${esc(u?u.email:'Tài khoản đã xóa')} · ${vd(f.createdAt)}</span></div><div class="ta"><span class="tag ${f.status==='Đã phản hồi'?'t-green':f.status==='Đang xử lý'?'t-blue':''}">${f.status}</span><button class="btn sec sm" onclick="App.replyFb('${f.id}')">Cập nhật / phản hồi</button></div></div><p>${esc(f.content)}</p>${f.reply?`<div class="note"><strong>Đã phản hồi:</strong> ${esc(f.reply)}</div>`:''}</div>`}).join(''):'<div class="empty">Chưa có góp ý nào.</div>');
+}
+
+/* ---------- router ---------- */
+const R=[
+ ['/',viewHome],['/bai-tap',viewExercises],['/bai-tap/:id',viewExercise],['/dinh-duong',viewNutrition],['/kien-thuc',viewArticles],['/kien-thuc/:id',viewArticle],['/lien-he',viewContact],
+ ['/dang-nhap',viewLogin,'guest'],['/dang-ky',viewRegister,'guest'],
+ ['/tai-khoan',uOverview,'user'],['/tai-khoan/ho-so',uProfile,'user'],['/tai-khoan/bmi',uBmi,'user'],['/tai-khoan/lich-tap',uPlans,'user'],['/tai-khoan/an-uong',uMeals,'user'],['/tai-khoan/theo-doi',uHealth,'user'],['/tai-khoan/gop-y',uFeedback,'user'],
+ ['/quan-tri',aOverview,'admin'],['/quan-tri/tai-khoan',aUsers,'admin'],['/quan-tri/bai-tap',aExercises,'admin'],['/quan-tri/thuc-pham',aFoods,'admin'],['/quan-tri/bai-viet',aArticles,'admin'],['/quan-tri/gop-y',aFeedback,'admin']
+];
+let keepScroll=false;
+function route(){
+  const path=(location.hash.slice(1)||'/').split('?')[0].replace(/\/$/,'')||'/';
+  let hit=null;
+  for(const [p,v,acc] of R){const m=path.match(new RegExp('^'+p.replace(/:\w+/g,'([\\w-]+)')+'$'));if(m){hit={v,acc,args:m.slice(1)};break}}
+  const u=me();
+  if(hit){
+    if(hit.acc==='guest'&&u)return go(u.role==='admin'?'/quan-tri':'/tai-khoan');
+    if(hit.acc==='user'){if(!u){afterLogin=path;return go('/dang-nhap')}if(u.role==='admin')return go('/quan-tri')}
+    if(hit.acc==='admin'){if(!u){afterLogin=path;return go('/dang-nhap')}if(u.role!=='admin'){toast('Bạn không có quyền vào khu quản trị.');return go('/tai-khoan')}}
+  }
+  post=null;
+  const y=window.scrollY;
+  $('#main').innerHTML=hit?hit.v(...hit.args):view404();
+  drawHeader(path);
+  $('#top').classList.remove('open');
+  enhanceView(path);
+  if(post)post();
+  const h=$('#main h1');document.title=(h?h.textContent+' – ':'')+'FitHealth';
+  if(keepScroll){window.scrollTo(0,y)}else{window.scrollTo(0,0)}
+  keepScroll=false;
+}
+function rerender(){keepScroll=true;route()}
+window.addEventListener('hashchange',route);
+
+/* ---------- actions ---------- */
+const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const pwOk=p=>p.length>=8&&/[A-Za-z]/.test(p)&&/\d/.test(p);
+const num0=v=>{const n=parseFloat(v);return isNaN(n)?0:n};
+const App={
+  menu(b){const t=$('#top');t.classList.toggle('open');b.setAttribute('aria-expanded',t.classList.contains('open'))},
+  closeM(){$('#dlg').close()},
+  async login(e){
+    e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),er=$('#aerr');
+    const u=DB.users.find(x=>x.email.toLowerCase()===d.email.trim().toLowerCase());
+    if(!u||u.hash!==await hashPw(u.salt,d.password)){er.textContent='Email hoặc mật khẩu không đúng.';return false}
+    if(!u.active){er.textContent='Tài khoản này đã bị khóa. Hãy liên hệ quản trị viên.';return false}
+    sessionId=u.id;lsSet(SKEY,u.id);
+    const n=afterLogin;afterLogin=null;
+    go(n&&((u.role==='admin')===n.startsWith('/quan-tri'))?n:(u.role==='admin'?'/quan-tri':'/tai-khoan'));toast('Đăng nhập thành công.');return false;
+  },
+  async register(e){
+    e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),er=$('#aerr'),em=d.email.trim().toLowerCase();
+    if(!d.fullName.trim()){er.textContent='Hãy nhập họ tên.';return false}
+    if(!emailRe.test(em)){er.textContent='Email chưa đúng định dạng.';return false}
+    if(DB.users.some(x=>x.email.toLowerCase()===em)){er.textContent='Email này đã được đăng ký. Hãy đăng nhập hoặc dùng email khác.';return false}
+    if(!pwOk(d.password)){er.textContent='Mật khẩu cần ít nhất 8 ký tự, gồm cả chữ và số.';return false}
+    if(d.password!==d.password2){er.textContent='Hai mật khẩu chưa khớp.';return false}
+    const salt=uid(),u={id:uid(),email:em,salt,hash:await hashPw(salt,d.password),role:'user',active:true,createdAt:todayISO()};
+    DB.users.push(u);DB.profiles[u.id]={fullName:d.fullName.trim()};save();
+    sessionId=u.id;lsSet(SKEY,u.id);go('/tai-khoan/ho-so');toast('Đã tạo tài khoản. Hãy hoàn thiện hồ sơ của bạn.');return false;
+  },
+  logout(){sessionId=null;lsDel(SKEY);go('/');toast('Đã đăng xuất.')},
+  saveProfile(e){
+    e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),er=$('#perr'),u=me(),h=num0(d.heightCm),tw=num0(d.targetWeight);
+    if(!d.fullName.trim()){er.textContent='Hãy nhập họ tên.';return false}
+    if(d.birthDate&&d.birthDate>todayISO()){er.textContent='Ngày sinh không thể ở tương lai.';return false}
+    if(d.heightCm&&(h<100||h>250)){er.textContent='Chiều cao cần nằm trong khoảng 100–250 cm.';return false}
+    if(d.targetWeight&&(tw<20||tw>300)){er.textContent='Cân nặng mục tiêu cần nằm trong khoảng 20–300 kg.';return false}
+    DB.profiles[u.id]={...DB.profiles[u.id],fullName:d.fullName.trim(),birthDate:d.birthDate,gender:d.gender,heightCm:h||null,activity:d.activity,goal:d.goal,targetWeight:tw||null};
+    save();er.textContent='';toast('Đã lưu hồ sơ.');return false;
+  },
+  async chPw(e){
+    e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),er=$('#werr'),u=me();
+    if(u.hash!==await hashPw(u.salt,d.old)){er.textContent='Mật khẩu hiện tại chưa đúng.';return false}
+    if(!pwOk(d.new1)){er.textContent='Mật khẩu mới cần ít nhất 8 ký tự, gồm cả chữ và số.';return false}
+    if(d.new1!==d.new2){er.textContent='Hai mật khẩu mới chưa khớp.';return false}
+    u.salt=uid();u.hash=await hashPw(u.salt,d.new1);save();e.target.reset();er.textContent='';toast('Đã đổi mật khẩu.');return false;
+  },
+  /* BMI */
+  saveBmi(){
+    const r=updBmi('ub');if(!r){toast('Hãy nhập số liệu hợp lệ trước khi lưu.');return}
+    DB.bmi.push({id:uid(),userId:me().id,date:todayISO(),heightCm:r.h,weight:r.w,bmi:r.b});save();rerender();toast('Đã lưu vào lịch sử BMI.');
+  },
+  delBmi(id){ask('Xóa lần đo này khỏi lịch sử?',()=>{DB.bmi=DB.bmi.filter(b=>b.id!==id);save()},'Xóa')},
+  /* exercises */
+  exf(k,v){EX[k]=v;if($('#exres'))exDraw();if(k==='cat'&&!$('#exres'))location.hash='#/bai-tap'},
+  nuf(v){NU.q=v;nuDraw()},
+  arf(k,v){AR[k]=v;arDraw()},
+  calcFood,
+  playVideo(id,btn){
+    if(location.protocol==='file:'){window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener');return}
+    const box=btn.parentElement,t=btn.dataset.t||'';
+    box.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&autoplay=1" title="Video hướng dẫn: ${esc(t)}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  },
+  dayUnit,
+  dayAdd(){const f=foodOf($('#df').value),q=parseFloat($('#dq').value);if(!f)return;if(!(q>0)){toast('Nhập lượng ăn lớn hơn 0.');return}DAY.push({meal:$('#dm').value,foodId:f.id,qty:q});dayDraw()},
+  dayDel(i){DAY.splice(i,1);dayDraw()},
+  dayClear(){DAY.length=0;dayDraw()},
+  daySave(){const u=me();if(!u||!DAY.length)return;const d=todayISO();
+    DAY.forEach(it=>{let m=DB.meals.find(x=>x.userId===u.id&&x.date===d&&x.type===it.meal);if(!m){m={id:uid(),userId:u.id,date:d,type:it.meal,items:[]};DB.meals.push(m)}m.items.push({foodId:it.foodId,qty:it.qty})});
+    DAY.length=0;save();toast('Đã lưu vào nhật ký ăn uống hôm nay.');MD=d;go('/tai-khoan/an-uong')},
+  fav(id){const u=me(),i=DB.favorites.findIndex(f=>f.userId===u.id&&f.articleId===id);if(i>=0)DB.favorites.splice(i,1);else DB.favorites.push({userId:u.id,articleId:id});save();rerender();toast(i>=0?'Đã bỏ khỏi bài yêu thích.':'Đã lưu bài yêu thích.')},
+  addToPlan(exId){
+    const u=me(),ps=DB.plans.filter(p=>p.userId===u.id&&planStatus(p)!=='Hoàn thành').sort(byDateDesc);
+    if(!ps.length){modal('Chưa có lịch tập','<p>Bạn cần tạo một lịch tập trước khi thêm bài tập.</p>',()=>{go('/tai-khoan/lich-tap');return true},{submit:'Tạo lịch tập'});return}
+    modal('Thêm vào lịch tập',flds([{name:'planId',label:'Lịch tập',type:'select',options:ps.map(p=>[p.id,`${p.name} (${vd(p.date)})`])},{name:'sets',label:'Số hiệp',type:'number',value:3,min:1},{name:'reps',label:'Số lần mỗi hiệp',type:'number',value:12,min:0},{name:'duration',label:'Thời gian (phút)',type:'number',value:0,min:0}]),d=>App._pushItem(d.planId,exId,d));
+  },
+  _pushItem(planId,exId,d){
+    const p=DB.plans.find(x=>x.id===planId&&x.userId===me().id);if(!p)return'Không tìm thấy lịch tập.';
+    const s=num0(d.sets),r=num0(d.reps),m=num0(d.duration);
+    if(s<1)return'Số hiệp cần lớn hơn 0.';if(r<=0&&m<=0)return'Hãy nhập số lần hoặc thời gian lớn hơn 0.';
+    p.items.push({id:uid(),exId,sets:s,reps:r,duration:m,done:false});save();toast('Đã thêm vào lịch tập.');return true;
+  },
+  /* plans */
+  newPlan(){modal('Tạo lịch tập',flds([{name:'name',label:'Tên lịch',required:true,ph:'Ví dụ: Tập chân'},{name:'date',label:'Ngày bắt đầu',type:'date',value:todayISO()},{name:'span',label:'Kiểu lịch',type:'select',options:[['day','Theo ngày'],['week','Theo tuần (7 ngày)']]}]),d=>{
+    if(!d.name.trim())return'Hãy đặt tên cho lịch tập.';if(!d.date)return'Hãy chọn ngày.';
+    DB.plans.push({id:uid(),userId:me().id,name:d.name.trim(),date:d.date,span:d.span,items:[]});save();toast('Đã tạo lịch tập.');return true},{submit:'Tạo lịch'})},
+  addItem(planId){
+    const l=DB.exercises.filter(e=>e.active);
+    modal('Thêm bài tập vào lịch',flds([{name:'exId',label:'Bài tập',type:'select',options:l.map(e=>[e.id,`${e.name} (${e.cat})`])},{name:'sets',label:'Số hiệp',type:'number',value:3,min:1},{name:'reps',label:'Số lần mỗi hiệp',type:'number',value:12,min:0},{name:'duration',label:'Thời gian (phút)',type:'number',value:0,min:0}]),d=>App._pushItem(planId,d.exId,d),{submit:'Thêm'});
+  },
+  doneItem(pid,iid){
+    const p=DB.plans.find(x=>x.id===pid&&x.userId===me().id),i=p&&p.items.find(x=>x.id===iid);if(!i)return;
+    modal('Ghi kết quả thực tế',flds([{name:'sets',label:'Số hiệp đã tập',type:'number',value:i.sets,min:0},{name:'reps',label:'Số lần mỗi hiệp',type:'number',value:i.reps,min:0},{name:'duration',label:'Thời gian (phút)',type:'number',value:i.duration,min:0},{name:'notes',label:'Ghi chú',type:'textarea',rows:2}]),d=>{
+      i.done=true;i.completedOn=todayISO();i.actual={sets:num0(d.sets),reps:num0(d.reps),duration:num0(d.duration),notes:d.notes.trim()};save();toast('Đã đánh dấu hoàn thành.');return true},{submit:'Lưu kết quả'});
+  },
+  undoItem(pid,iid){const p=DB.plans.find(x=>x.id===pid&&x.userId===me().id),i=p&&p.items.find(x=>x.id===iid);if(i){i.done=false;delete i.actual;delete i.completedOn;save();rerender()}},
+  delItem(pid,iid){ask('Xóa bài tập này khỏi lịch?',()=>{const p=DB.plans.find(x=>x.id===pid&&x.userId===me().id);if(p){p.items=p.items.filter(i=>i.id!==iid);save()}},'Xóa')},
+  delPlan(pid){ask('Xóa cả lịch tập này và kết quả đã ghi?',()=>{DB.plans=DB.plans.filter(p=>!(p.id===pid&&p.userId===me().id));save()},'Xóa lịch')},
+  /* meals */
+  setMd(v){if(v){MD=v;rerender()}},
+  addFood(type){
+    modal(`Thêm vào ${type.toLowerCase()}`,`<div class="fld"><label for="f_foodId">Thực phẩm</label><select id="f_foodId" name="foodId" onchange="App.prevFood()">${opt(DB.foods.map(f=>[f.id,f.name]))}</select></div><div class="fld"><label for="f_qty">Lượng ăn (<span id="pu">g</span>)</label><input id="f_qty" name="qty" type="number" step="any" min="0" value="100" oninput="App.prevFood()"></div><div id="pv" aria-live="polite" class="muted"></div>`,d=>{
+      const f=foodOf(d.foodId),q=num0(d.qty);if(!f)return'Hãy chọn thực phẩm.';if(q<=0)return'Lượng ăn cần lớn hơn 0.';
+      const u=me();let m=DB.meals.find(x=>x.userId===u.id&&x.date===MD&&x.type===type);
+      if(!m){m={id:uid(),userId:u.id,date:MD,type,items:[]};DB.meals.push(m)}
+      m.items.push({foodId:f.id,qty:q});save();toast('Đã thêm vào nhật ký.');return true},{submit:'Thêm'});
+    App.prevFood();
+  },
+  prevFood(){
+    const f=foodOf($('#f_foodId').value),q=num0($('#f_qty').value);$('#pu').textContent=f?f.unit:'';
+    $('#pv').textContent=f&&q>0?(()=>{const v=foodVals(f,q);return `≈ ${num(v.cal,0)} kcal · Protein ${num(v.protein)} g · Carb ${num(v.carbs)} g · Béo ${num(v.fat)} g`})():'';
+  },
+  delFood(mid,ix){const m=DB.meals.find(x=>x.id===mid&&x.userId===me().id);if(m){m.items.splice(ix,1);if(!m.items.length)DB.meals=DB.meals.filter(x=>x.id!==mid);save();rerender()}},
+  /* health */
+  saveHealth(e){
+    e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),er=$('#herr'),u=me(),w=num0(d.weight),wa=num0(d.water),s=num0(d.sleep);
+    if(!d.date||d.date>todayISO()){er.textContent='Hãy chọn ngày không ở tương lai.';return false}
+    if(!w&&!wa&&!s){er.textContent='Hãy nhập ít nhất một giá trị: cân nặng, nước uống hoặc giấc ngủ.';return false}
+    if(d.weight&&(w<20||w>300)){er.textContent='Cân nặng cần nằm trong khoảng 20–300 kg.';return false}
+    if(wa<0||wa>10000){er.textContent='Lượng nước cần từ 0 đến 10.000 ml.';return false}
+    if(s<0||s>24){er.textContent='Số giờ ngủ cần từ 0 đến 24.';return false}
+    const x=DB.healthLogs.find(l=>l.userId===u.id&&l.date===d.date),v={weight:w||0,water:wa,sleep:s,notes:d.notes.trim()};
+    if(x)Object.assign(x,v);else DB.healthLogs.push({id:uid(),userId:u.id,date:d.date,...v});
+    save();rerender();toast(x?'Đã cập nhật ghi nhận của ngày này.':'Đã lưu ghi nhận.');return false;
+  },
+  addWater(){
+    const u=me(),t=todayISO();let x=DB.healthLogs.find(l=>l.userId===u.id&&l.date===t);
+    if(!x){x={id:uid(),userId:u.id,date:t,weight:0,water:0,sleep:0,notes:''};DB.healthLogs.push(x)}
+    x.water=Math.min(10000,(x.water||0)+250);save();rerender();toast(`Hôm nay: ${num(x.water,0)} ml nước.`);
+  },
+  delHealth(id){ask('Xóa ghi nhận này?',()=>{DB.healthLogs=DB.healthLogs.filter(l=>!(l.id===id&&l.userId===me().id));save()},'Xóa')},
+  /* feedback */
+  sendFb(e){
+    e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),er=$('#fberr'),u=me();
+    if(!u||u.role!=='user'){er.textContent='Bạn cần đăng nhập bằng tài khoản người dùng.';return false}
+    if(!d.subject.trim()||!d.content.trim()){er.textContent='Hãy nhập cả tiêu đề và nội dung.';return false}
+    DB.feedbacks.push({id:uid(),userId:u.id,subject:d.subject.trim(),content:d.content.trim(),status:'Mới',reply:'',createdAt:todayISO(),repliedAt:''});save();
+    toast('Đã gửi góp ý. Bạn có thể xem phản hồi trong Góp ý của tôi.');go('/tai-khoan/gop-y');return false;
+  },
+  /* admin: users */
+  uq(v){UQ=v;$('#ures').innerHTML=userTable(DB.users.filter(u=>{const q=v.trim().toLowerCase();return !q||u.email.toLowerCase().includes(q)||(prof(u.id).fullName||'').toLowerCase().includes(q)}),me())},
+  toggleUser(id){const u=DB.users.find(x=>x.id===id);if(!u||u.id===me().id)return;u.active=!u.active;save();rerender();toast(u.active?'Đã mở khóa tài khoản.':'Đã khóa tài khoản.')},
+  setRole(id,r){const u=DB.users.find(x=>x.id===id);if(!u||u.id===me().id)return;u.role=r;save();toast('Đã đổi vai trò.')},
+  /* admin: exercises */
+  editEx(id){
+    const e=id?exOf(id):{name:'',cat:CATS[0],muscle:MUSCLES[0],equip:'',diff:DIFFS[0],place:PLACES[0],steps:[]};
+    modal(id?'Sửa bài tập':'Thêm bài tập',flds([{name:'name',label:'Tên bài tập',value:e.name,required:true},{name:'cat',label:'Nhóm nội dung',type:'select',options:CATS,value:e.cat},{name:'muscle',label:'Nhóm cơ',type:'select',options:MUSCLES,value:e.muscle},{name:'equip',label:'Dụng cụ',value:e.equip,ph:'Ví dụ: Tạ đơn'},{name:'diff',label:'Độ khó',type:'select',options:DIFFS,value:e.diff},{name:'place',label:'Nơi tập',type:'select',options:PLACES,value:e.place},{name:'video',label:'Link video hướng dẫn (YouTube hoặc .mp4)',value:e.video||'',ph:'https://www.youtube.com/watch?v=...'},{name:'steps',label:'Hướng dẫn (mỗi bước một dòng)',type:'textarea',rows:5,value:e.steps.join('\n')}]),d=>{
+      if(!d.name.trim())return'Hãy nhập tên bài tập.';
+      const steps=d.steps.split('\n').map(s=>s.trim()).filter(Boolean);if(!steps.length)return'Hãy nhập ít nhất một bước hướng dẫn.';
+      const vid=(d.video||'').trim();if(vid&&!ytId(vid)&&!VID_FILE.test(vid))return'Link video chưa hợp lệ. Hãy dán link YouTube hoặc link .mp4.';
+      const v={name:d.name.trim(),cat:d.cat,muscle:d.muscle,equip:d.equip.trim()||'Không cần dụng cụ',diff:d.diff,place:d.place,video:vid,steps};
+      if(id)Object.assign(exOf(id),v);else DB.exercises.push({id:uid(),active:true,...v});save();toast('Đã lưu bài tập.');return true});
+  },
+  hideEx(id){const e=exOf(id);e.active=!e.active;save();rerender();toast(e.active?'Đã hiển thị bài tập.':'Đã ẩn bài tập.')},
+  delEx(id){
+    if(DB.plans.some(p=>p.items.some(i=>i.exId===id))){toast('Bài tập đang nằm trong lịch tập của người dùng. Hãy ẩn thay vì xóa.');return}
+    ask('Xóa bài tập này vĩnh viễn?',()=>{DB.exercises=DB.exercises.filter(e=>e.id!==id);save()},'Xóa');
+  },
+  /* admin: foods */
+  editFood(id){
+    const f=id?foodOf(id):{name:'',refQty:100,unit:'g',cal:'',protein:'',carbs:'',fat:''};
+    modal(id?'Sửa thực phẩm':'Thêm thực phẩm',flds([{name:'name',label:'Tên thực phẩm',value:f.name,required:true},{name:'refQty',label:'Lượng tham chiếu',type:'number',value:f.refQty,min:0,hint:'Ví dụ 100 cho 100 g.'},{name:'unit',label:'Đơn vị',type:'select',options:['g','ml'],value:f.unit},{name:'cal',label:'Năng lượng (kcal)',type:'number',value:f.cal,min:0},{name:'protein',label:'Protein (g)',type:'number',value:f.protein,min:0},{name:'carbs',label:'Carbohydrate (g)',type:'number',value:f.carbs,min:0},{name:'fat',label:'Chất béo (g)',type:'number',value:f.fat,min:0}]),d=>{
+      if(!d.name.trim())return'Hãy nhập tên thực phẩm.';if(!(num0(d.refQty)>0))return'Lượng tham chiếu cần lớn hơn 0.';
+      const v={name:d.name.trim(),refQty:num0(d.refQty),unit:d.unit,cal:num0(d.cal),protein:num0(d.protein),carbs:num0(d.carbs),fat:num0(d.fat)};
+      if(id)Object.assign(foodOf(id),v);else DB.foods.push({id:uid(),...v});save();toast('Đã lưu thực phẩm.');return true});
+  },
+  delFoodItem(id){
+    if(DB.meals.some(m=>m.items.some(i=>i.foodId===id))){toast('Thực phẩm này đã có trong nhật ký của người dùng nên không thể xóa.');return}
+    ask('Xóa thực phẩm này?',()=>{DB.foods=DB.foods.filter(f=>f.id!==id);save()},'Xóa');
+  },
+  /* admin: articles */
+  editArt(id){
+    const a=id?DB.articles.find(x=>x.id===id):{title:'',category:'Kỹ thuật tập luyện',content:'',source:'',sourceUrl:''};
+    modal(id?'Sửa bài viết':'Soạn bài viết',flds([{name:'title',label:'Tiêu đề',value:a.title,required:true},{name:'category',label:'Chủ đề',value:a.category,hint:'Ví dụ: Dinh dưỡng, Giấc ngủ, Kỹ thuật tập luyện.'},{name:'content',label:'Nội dung (cách đoạn bằng một dòng trống)',type:'textarea',rows:8,value:a.content},{name:'source',label:'Nguồn tham khảo',value:a.source},{name:'sourceUrl',label:'Đường dẫn nguồn (nếu có)',type:'url',value:a.sourceUrl}]),d=>{
+      if(!d.title.trim()||!d.content.trim())return'Hãy nhập tiêu đề và nội dung.';
+      if(d.sourceUrl&&!/^https?:\/\//i.test(d.sourceUrl))return'Đường dẫn nguồn cần bắt đầu bằng http:// hoặc https://.';
+      const v={title:d.title.trim(),category:d.category.trim()||'Khác',content:d.content.trim(),source:d.source.trim(),sourceUrl:d.sourceUrl.trim()};
+      if(id)Object.assign(DB.articles.find(x=>x.id===id),v);else DB.articles.push({id:uid(),author:'Ban biên tập FitHealth',publishedAt:todayISO(),status:'Nháp',...v});save();toast('Đã lưu bài viết.');return true});
+  },
+  pubArt(id){const a=DB.articles.find(x=>x.id===id);a.status=a.status==='Đã xuất bản'?'Đã ẩn':'Đã xuất bản';if(a.status==='Đã xuất bản')a.publishedAt=todayISO();save();rerender();toast(a.status==='Đã xuất bản'?'Đã xuất bản bài viết.':'Đã ẩn bài viết.')},
+  delArt(id){ask('Xóa bài viết này vĩnh viễn?',()=>{DB.articles=DB.articles.filter(a=>a.id!==id);save()},'Xóa')},
+  /* admin: feedback */
+  replyFb(id){
+    const f=DB.feedbacks.find(x=>x.id===id);
+    modal('Phản hồi góp ý',`<p class="muted"><strong>${esc(f.subject)}</strong><br>${esc(f.content)}</p>`+flds([{name:'status',label:'Trạng thái',type:'select',options:FBST,value:f.status},{name:'reply',label:'Nội dung phản hồi',type:'textarea',rows:4,value:f.reply}]),d=>{
+      if(d.status==='Đã phản hồi'&&!d.reply.trim())return'Hãy nhập nội dung phản hồi trước khi chuyển sang “Đã phản hồi”.';
+      f.status=d.status;f.reply=d.reply.trim();if(f.reply)f.repliedAt=todayISO();save();toast('Đã cập nhật góp ý.');return true});
+  }
+};
+
+let chosenGoal=lsGet('fithealth_goal')||'Giảm cân';
+const goalText={'Giảm cân':'Bắt đầu với lịch vận động đều đặn, xen kẽ cardio và sức mạnh. Theo dõi việc thực hiện từng ngày.','Tăng cơ':'Lịch mẫu ưu tiên sức mạnh, ghi số hiệp và số lần thực tế để theo dõi tiến bộ.','Duy trì thể trạng':'Kết hợp đi bộ, sức mạnh và giãn cơ để xây dựng thói quen vận động.'};
+function bodyMap(){return `<svg class="muscle-map" viewBox="0 0 240 400" aria-label="Chọn nhóm cơ trên hình cơ thể"><circle cx="120" cy="37" r="25" fill="#b6c9bd"/><path d="M105 59h30l8 22h-46z" fill="#b6c9bd"/><path data-muscle="Vai" role="button" tabindex="0" aria-label="Chọn cơ vai" d="M93 80L70 88 57 119 81 126 96 107z M147 80L170 88 183 119 159 126 144 107z"/><path data-muscle="Ngực" role="button" tabindex="0" aria-label="Chọn cơ ngực" d="M95 83h50l12 44-37 12-37-12z"/><path data-muscle="Bụng" role="button" tabindex="0" aria-label="Chọn cơ bụng" d="M86 135l34 9 34-9-8 72H94z"/><path data-muscle="Tay" role="button" tabindex="0" aria-label="Chọn cơ tay" d="M56 126l25 7-15 79-17 39-17-8 16-48z M184 126l-25 7 15 79 17 39 17-8-16-48z"/><path data-muscle="Chân" role="button" tabindex="0" aria-label="Chọn cơ chân" d="M94 213h23l-5 81-9 79H80l2-84z M123 213h23l12 76 2 84h-23l-9-79z"/><path d="M80 377h23l-4 15H72z M137 377h23l8 15h-27z" fill="#b6c9bd"/></svg>`}
+viewHome=function(){const u=me(),cta=u?(u.role==='admin'?'/quan-tri':'/tai-khoan'):'/dang-ky';post=()=>{updBmi('hb');$('#hbh').oninput=$('#hbw').oninput=()=>updBmi('hb')};return `
+<div class="wrap"><section class="featurehero"><div class="hero-photo" aria-hidden="true"></div><div class="hero-copy"><span class="eyebrow">Your everyday wellness companion</span><h1>Khỏe hơn.<br>Mỗi ngày.</h1><p>Một nơi cho buổi tập, bữa ăn và những tiến bộ nhỏ của bạn. Bắt đầu hành trình theo cách phù hợp với mình.</p><div class="cta"><a class="btn lg" href="#${cta}">Bắt đầu hành trình ↗</a> <a class="btn sec lg" href="#/bai-tap">Khám phá bài tập</a></div><p style="margin-top:24px;font-size:.82rem">Lịch tập · Dinh dưỡng · Theo dõi tiến độ</p></div></section></div>
+<section class="sec"><div class="wrap"><span class="eyebrow" style="color:var(--green)">01 / Bắt đầu từ mục tiêu</span><div class="shead"><h2>Hành trình của bạn, lựa chọn của bạn.</h2></div><div class="goalgrid">${GOALS.map((g,i)=>`<button class="goal-card ${g===chosenGoal?'selected':''}" aria-pressed="${g===chosenGoal}" onclick="App.chooseGoal('${g}')"><span class="goal-icon">${['↘','↗','◎'][i]}</span><b>${g}</b><span class="muted">${['Tạo thói quen vận động đều đặn','Xây dựng sức mạnh từng buổi tập','Giữ nhịp sống năng động'][i]}</span></button>`).join('')}</div><div class="goal-summary"><p id="goaldesc" style="margin:0">${goalText[chosenGoal]}</p><button class="btn sec" onclick="App.applyTemplate()">Xem & áp dụng lịch mẫu →</button></div></div></section>
+<section class="sec alt"><div class="wrap"><div class="visual-panel"><div>${bodyMap()}</div><div><span class="eyebrow" style="color:var(--green)">02 / Chạm để khám phá</span><h2>Hôm nay bạn muốn tập nhóm cơ nào?</h2><p class="sectionintro">Chọn trực tiếp trên hình hoặc dùng các nút bên dưới. FitHealth sẽ mở những bài tập phù hợp với nhóm cơ bạn chọn.</p><div class="chips">${MUSCLES.map(m=>`<button class="chip" onclick="App.pickMuscle('${m}')">${m}</button>`).join('')}</div><p class="fine">Ảnh cơ thể là sơ đồ lựa chọn nhóm cơ.</p></div></div></div></section>
+<section class="sec"><div class="wrap"><div class="shead"><div><span class="eyebrow" style="color:var(--green)">03 / Move your way</span><h2>Tìm cách vận động bạn yêu thích.</h2></div><a href="#/bai-tap">Tất cả bài tập ↗</a></div><div class="tiles">${CATS.map(c=>`<a class="tile" href="#/bai-tap" onclick="App.exf('cat','${c}')">${art(c)}<div class="tb"><h3>${c}</h3><span class="muted">${DB.exercises.filter(e=>e.cat===c&&e.active).length} bài tập để khám phá</span></div></a>`).join('')}</div></div></section>
+<section class="sec alt"><div class="wrap two"><div><span class="eyebrow" style="color:var(--green)">04 / Hiểu cơ thể của mình</span><h2>Những con số nhỏ.<br>Hành trình dài.</h2><p class="sectionintro">Ghi lại cân nặng, nước uống, giấc ngủ và buổi tập. Dashboard giúp bạn nhìn lại việc mình đã thực hiện.</p><a class="btn" href="#/dang-nhap">Khám phá tài khoản dùng thử ↗</a></div><div class="bmi-panel"><h2>Tính BMI nhanh</h2>${bmiBox('hb')}<p class="fine">${esc(BMI_NOTE)}</p></div></div></section>
+<section class="sec"><div class="wrap two"><div class="mealhero" role="img" aria-label="Bữa ăn minh họa gồm cơm, thịt gà và rau"></div><div><span class="eyebrow" style="color:var(--green)">05 / Ăn uống chủ động</span><h2>Mỗi bữa ăn đều có câu chuyện.</h2><p class="sectionintro">Chọn món, nhập lượng ăn và xem ngay tổng calo của cả ngày hôm nay. Ghi lại bữa ăn để theo dõi tiến độ so với mục tiêu.</p><div class="cta"><a class="btn" href="#/dinh-duong">Tính calo hôm nay →</a> <a class="btn sec" href="#/dinh-duong">Khám phá dinh dưỡng</a></div></div></div></section>
+<section class="sec alt"><div class="wrap"><div class="shead"><h2>Kiến thức cho hành trình của bạn</h2><a href="#/kien-thuc">Đọc thêm ↗</a></div><div class="cols3">${DB.articles.filter(a=>a.status==='Đã xuất bản').slice(0,3).map((a,i)=>`<a class="post" href="#/kien-thuc/${a.id}">${artFor(a.category)}<span class="tag">${esc(a.category)}</span><h3 style="margin-top:12px">${esc(a.title)}</h3><p class="muted">${esc(a.content.slice(0,100))}…</p></a>`).join('')}</div></div></section>`};
+function ring(value,label,progress){return `<div class="ringcard"><div class="ring" style="--progress:${Math.min(100,Math.max(0,progress))}"><strong>${esc(value)}</strong></div><b>${esc(label)}</b></div>`}
+function enhanceView(path){
+ if(path==='/'){document.querySelectorAll('[data-muscle]').forEach(el=>{const act=()=>App.pickMuscle(el.dataset.muscle);el.onclick=act;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act()}}})}
+ if(path==='/tai-khoan'){
+ const u=me(),t=todayISO(),l=myLogs(u.id).find(l=>l.date===t)||{},target=prof(u.id).waterGoal||2000;const plans=DB.plans.filter(p=>p.userId===u.id&&p.date===t),n=plans.reduce((a,p)=>a+p.items.length,0),done=plans.reduce((a,p)=>a+p.items.filter(i=>i.done).length,0);
+ const el=document.createElement('div');el.innerHTML=`<div class="quickmetrics">${ring(num(l.water||0,0)+' ml','Nước đã ghi / mục tiêu '+num(target,0)+' ml',(l.water||0)/target*100)}${ring(done+'/'+n,'Bài tập trong lịch hôm nay',n?done/n*100:0)}${ring(num(l.sleep||0)+' giờ','Giấc ngủ đã ghi',((l.sleep||0)/24)*100)}</div><p class="fine">Vòng giấc ngủ thể hiện số giờ đã ghi trong 24 giờ. Mục tiêu nước do bạn tự đặt.</p><div class="ta" style="margin-bottom:24px"><button class="btn sm" onclick="App.addWater()">+250 ml nước</button><button class="btn sec sm" onclick="App.setWaterGoal()">Đặt mục tiêu nước</button><a class="btn sec sm" href="#/tai-khoan/bao-cao">Báo cáo tuần ↗</a><button class="btn sec sm" onclick="App.applyTemplate()">Lịch tập mẫu</button></div>`;$('#main .stats').before(el);
+ }
+ if(path==='/tai-khoan/lich-tap'){
+ const u=me(),t=todayISO(),el=document.createElement('div');el.innerHTML=`<div class="weekgrid">${Array.from({length:7},(_,i)=>{const date=addDays(t,i),ps=DB.plans.filter(p=>p.userId===u.id&&p.date===date);return `<div class="daycard"><b>${vd(date).slice(0,5)}</b>${ps.length?ps.map(p=>esc(p.name)).join('<br>'):'Chưa có buổi tập'}</div>`}).join('')}</div><button class="btn sec sm" style="margin-bottom:20px" onclick="App.applyTemplate()">Thêm lộ trình mẫu</button>`;$('#main .stats').before(el)
+ }
+ if(path==='/dinh-duong'){const el=document.createElement('div');el.className='mealhero';el.setAttribute('role','img');el.setAttribute('aria-label','Ảnh bữa ăn minh họa');$('#main .pn').prepend(el)}
+}
+App.chooseGoal=g=>{chosenGoal=g;lsSet('fithealth_goal',g);rerender()};
+App.pickMuscle=m=>{EX.muscle=m;EX.cat='';EX.q='';EX.diff='';EX.place='';go('/bai-tap')};
+App.setWaterGoal=()=>modal('Mục tiêu nước của bạn',flds([{name:'target',label:'Mục tiêu tự đặt (ml/ngày)',type:'number',value:prof(me().id).waterGoal||2000,min:100,max:10000}]),d=>{const v=Number(d.target);if(!Number.isFinite(v)||v<100||v>10000)return'Nhập mục tiêu từ 100 đến 10.000 ml.';DB.profiles[me().id].waterGoal=v;save();return true});
+App.applyTemplate=()=>{
+ const u=me();if(!u){afterLogin='/tai-khoan/lich-tap';go('/dang-nhap');toast('Đăng nhập để áp dụng lịch mẫu.');return}if(u.role!=='user'){toast('Dùng tài khoản người dùng để tạo lịch tập.');return}
+ modal('Lộ trình mẫu • '+chosenGoal,`<p>${goalText[chosenGoal]}</p><p>Ba buổi trong bảy ngày, vào ngày bắt đầu, sau 2 ngày và sau 4 ngày. Có thể chỉnh từng bài sau khi tạo.</p>`+flds([{name:'date',label:'Ngày bắt đầu',type:'date',value:todayISO()}]),d=>{if(!d.date)return'Chọn ngày bắt đầu.';const cats=chosenGoal==='Tăng cơ'?['Sức mạnh','Cơ bụng','Giãn cơ']:['Cardio','Sức mạnh','Yoga'];cats.forEach((cat,i)=>{const es=DB.exercises.filter(e=>e.active&&e.cat===cat).slice(0,2);DB.plans.push({id:uid(),userId:u.id,name:`${chosenGoal} • Buổi ${i+1}`,date:addDays(d.date,i*2),span:'day',items:es.map(e=>({id:uid(),exId:e.id,sets:3,reps:cat==='Sức mạnh'?10:0,duration:cat==='Sức mạnh'?0:5,done:false}))})});prof(u.id).goal=chosenGoal;save();go('/tai-khoan/lich-tap');toast('Đã thêm 3 buổi tập mẫu.');return true},{submit:'Tạo 3 buổi tập'})
+};
+let workout=null,timerId=null;
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
+function tickTimer(){if(!workout)return;const sec=Math.floor((workout.elapsed+(workout.started?Date.now()-workout.started:0))/1000),el=$('#clock');if(el)el.textContent=pad(Math.floor(sec/60))+':'+pad(sec%60)}
+function workoutView(){const d=$('#dlg'),p=DB.plans.find(p=>p.id===workout.pid),i=p.items.find(i=>i.id===workout.iid),e=exOf(i.exId);d.innerHTML=`<div class="mform"><h2 id="dlgt">${esc(e?e.name:'Buổi tập')}</h2>${e?art(e.cat):''}<p class="fine">${i.sets} hiệp · ${i.reps?i.reps+' lần/hiệp':i.duration+' phút'} • Đồng hồ ghi thời gian phiên tập</p><div id="clock" class="timerface" role="timer">00:00</div><div class="timeractions"><button class="btn" id="pausebtn" onclick="App.toggleWorkout()">${workout.started?'Tạm dừng':'Tiếp tục'}</button><button class="btn sec" onclick="App.finishWorkout()">Lưu hoàn thành bài</button><button class="btn ghost" onclick="App.cancelWorkout()">Kết thúc phiên</button></div><p class="fine">Ảnh minh họa nhóm bài tập. Xem hướng dẫn động tác trước khi thực hiện. ${e?`<a href="#/bai-tap/${e.id}" target="_blank" rel="noopener">Xem video hướng dẫn (mở tab mới)</a>`:''}</p></div>`;tickTimer();if(!d.open)d.showModal()}
+App.beginWorkout=pid=>{const p=DB.plans.find(p=>p.id===pid&&p.userId===me().id),i=p&&p.items.find(i=>!i.done);if(!i){toast('Thêm bài tập chưa hoàn thành trước khi bắt đầu.');return}stopTimer();workout={pid,iid:i.id,elapsed:0,started:Date.now()};workoutView();timerId=setInterval(tickTimer,250)};
+App.toggleWorkout=()=>{if(!workout)return;if(workout.started){workout.elapsed+=Date.now()-workout.started;workout.started=null}else workout.started=Date.now();$('#pausebtn').textContent=workout.started?'Tạm dừng':'Tiếp tục';tickTimer()};
+App.cancelWorkout=()=>{stopTimer();workout=null;$('#dlg').close();toast('Đã kết thúc phiên. Bài tập chưa được đánh dấu hoàn thành.')};
+App.finishWorkout=()=>{if(!workout)return;const p=DB.plans.find(p=>p.id===workout.pid&&p.userId===me().id),i=p&&p.items.find(i=>i.id===workout.iid);if(!i)return;const seconds=Math.floor((workout.elapsed+(workout.started?Date.now()-workout.started:0))/1000);const pid=workout.pid,iid=workout.iid;stopTimer();workout=null;modal('Xác nhận kết quả thực tế',flds([{name:'sets',label:'Số hiệp đã tập',type:'number',value:i.sets,min:1},{name:'reps',label:'Số lần mỗi hiệp',type:'number',value:i.reps,min:0},{name:'duration',label:'Phút tập thực tế (có thể chỉnh)',type:'number',value:Math.round(seconds/60*10)/10,min:0},{name:'notes',label:'Ghi chú',type:'textarea'}]),d=>{const sets=Number(d.sets),reps=Number(d.reps),duration=Number(d.duration);if(!Number.isFinite(sets)||sets<1||!Number.isFinite(reps)||reps<0||!Number.isFinite(duration)||duration<0)return'Kiểm tra số liệu thực tế.';if(!reps&&!duration)return'Nhập số lần hoặc thời gian thực tế.';i.done=true;i.completedOn=todayISO();i.actual={sets,reps,duration,notes:d.notes.trim()};save();toast('Đã lưu kết quả thực tế.');return true},{submit:'Xác nhận hoàn thành'})};
+$('#dlg').addEventListener('close',()=>{stopTimer();workout=null});$('#dlg').addEventListener('cancel',()=>{stopTimer();workout=null});window.addEventListener('hashchange',()=>{stopTimer();workout=null;if($('#dlg').open)$('#dlg').close()});
+function reportView(){const u=me(),t=todayISO(),start=addDays(t,-6),plans=DB.plans.filter(p=>p.userId===u.id),items=plans.flatMap(p=>p.items).filter(i=>i.done&&i.completedOn>=start&&i.completedOn<=t),logs=myLogs(u.id).filter(l=>l.date>=start&&l.date<=t),minutes=items.reduce((n,i)=>n+(i.actual?.duration||0),0);return shell('user','/tai-khoan/bao-cao','Bảy ngày của bạn',`<p class="muted">${vd(start)} – ${vd(t)} · Dựa trên dữ liệu đã ghi</p><div class="stats"><div class="stat"><b>${items.length}</b><span>Bài tập hoàn thành</span></div><div class="stat"><b>${num(minutes)}</b><span>Phút tập thực tế đã ghi</span></div><div class="stat"><b>${logs.length}/7</b><span>Ngày có nhật ký sức khỏe</span></div></div><div class="pn"><h2>Hoạt động trong tuần</h2>${barChart(Array.from({length:7},(_,k)=>{const d=addDays(start,k);return{l:vd(d).slice(0,5),v:items.filter(i=>i.completedOn===d).length}}),'Số bài tập hoàn thành theo ngày')}</div><div class="pn"><h2>Cân nặng đã ghi</h2>${lineChart(logs.filter(l=>l.weight>0).map(l=>({x:vd(l.date),y:l.weight})),{unit:'kg'})}</div><p class="fine">Ngày thiếu dữ liệu không có nghĩa là bạn không vận động. Báo cáo không đánh giá tình trạng sức khỏe.</p><button class="btn" onclick="App.exportReport()">Tải nhật ký tuần (CSV)</button>`)}
+R[0][1]=viewHome;
+R.push(['/tai-khoan/bao-cao',reportView,'user']);
+App.exportReport=()=>{const t=todayISO(),start=addDays(t,-6),logs=myLogs(me().id).filter(l=>l.date>=start&&l.date<=t);const lines=['Ngay,Can_nang_kg,Nuoc_ml,Giac_ngu_gio',...logs.map(l=>[l.date,l.weight||'',l.water||0,l.sleep||0].join(','))];const url=URL.createObjectURL(new Blob(['\uFEFF'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='fithealth-nhat-ky-tuan.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+
+window.App=App;
+
+/* ---------- init ---------- */
+(async function init(){
+  try{const s=lsGet(KEY);if(s)DB=JSON.parse(s)}catch(e){DB=null}
+  if(!DB||!DB.users){DB=await seed();save()}
+  sessionId=lsGet(SKEY);
+  if(!me())sessionId=null;
+  route();
+})();
+})();
+</script>
+</body>
+</html>

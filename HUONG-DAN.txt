@@ -1,0 +1,5 @@
+HƯỚNG DẪN MỞ WEBSITE
+1. Giải nén toàn bộ thư mục.
+2. Mở index.html để chọn thành viên.
+3. Chọn Portfolio để xem Hồ sơ cá nhân, Kỹ năng & Công nghệ, Mục tiêu.
+Các ảnh, biểu tượng và mã nguồn được lưu trong thư mục để mở ngoại tuyến.
